@@ -9,7 +9,7 @@ public class Telefone {
     private String ddd;
 
 
-    public Telefone(String numero, String ddd) {
+    public Telefone(String ddd, String numero) {
 
         if(numero == null || numero.isEmpty()) {
             throw new IllegalArgumentException("Numero não pode ser nulo ou vazio");
