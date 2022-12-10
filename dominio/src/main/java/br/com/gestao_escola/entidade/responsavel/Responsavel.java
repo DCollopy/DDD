@@ -1,6 +1,6 @@
 package br.com.gestao_escola.entidade.responsavel;
 
-import br.com.gestao_escola.entidade.generico.*;
+import br.com.gestao_escola.entidade.objetos.*;
 import lombok.Data;
 
 @Data

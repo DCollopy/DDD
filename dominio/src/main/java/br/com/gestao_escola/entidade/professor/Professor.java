@@ -1,10 +1,9 @@
 package br.com.gestao_escola.entidade.professor;
 
-import br.com.gestao_escola.entidade.generico.*;
+import br.com.gestao_escola.entidade.objetos.*;
 import lombok.Data;
 
 import java.time.Year;
-import java.util.Date;
 
 @Data
 public class Professor  extends Pessoa {

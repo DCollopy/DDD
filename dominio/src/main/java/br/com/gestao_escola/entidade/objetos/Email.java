@@ -1,4 +1,4 @@
-package br.com.gestao_escola.entidade.generico;
+package br.com.gestao_escola.entidade.objetos;
 
 public class Email {
 

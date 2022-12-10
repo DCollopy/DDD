@@ -1,8 +1,7 @@
 package br.com.gestao_escola.entidade.aluno;
 
-import br.com.gestao_escola.entidade.aula.Aula;
 import br.com.gestao_escola.entidade.disciplina.Turma;
-import br.com.gestao_escola.entidade.generico.*;
+import br.com.gestao_escola.entidade.objetos.*;
 import lombok.Data;
 
 import java.time.Year;

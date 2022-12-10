@@ -1,6 +1,6 @@
 package br.com.gestao_escola.entidade.servico;
 
-import br.com.gestao_escola.entidade.generico.Cpf;
+import br.com.gestao_escola.entidade.objetos.Cpf;
 import br.com.gestao_escola.entidade.responsavel.Responsavel;
 
 import java.util.List;
