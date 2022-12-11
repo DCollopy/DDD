@@ -17,7 +17,7 @@ public class Aluno extends Pessoa {
 
     private Falta falta;
 
-    public Aluno(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf,Email email) {
+    public Aluno(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email) {
         super(nome, sobrenome, telefone, endereco, cpf, email);
     }
 
@@ -26,8 +26,7 @@ public class Aluno extends Pessoa {
     }
 
 
-
-    public Aluno(){
+    public Aluno() {
         super();
     }
 

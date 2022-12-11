@@ -2,6 +2,8 @@ package br.com.gestao_escola.entidade.objetos;
 
 import lombok.Data;
 
+import java.util.logging.Logger;
+
 @Data
 public abstract class Pessoa {
 
@@ -20,10 +22,12 @@ public abstract class Pessoa {
     public Pessoa(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email) {
 
         if(nome == null || nome.isEmpty()) {
+            Logger.getLogger("Pessoa").info("Nome invalido");
             throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
 
         }
         if(sobrenome == null || sobrenome.isEmpty()) {
+            Logger.getLogger("Pessoa").info("Sobrenome invalido");
             throw new IllegalArgumentException("Sobrenome não pode ser nulo ou vazio");
         }
         this.nome = nome;
@@ -37,10 +41,12 @@ public abstract class Pessoa {
     public Pessoa(String nome, String sobrenome, Cpf cpf) {
 
         if(nome == null || nome.isEmpty()) {
+            Logger.getLogger("Pessoa").info("Nome invalido");
             throw new IllegalArgumentException("Nome não pode ser nulo ou vazio");
 
         }
         if(sobrenome == null || sobrenome.isEmpty()) {
+            Logger.getLogger("Pessoa").info("Sobrenome invalido");
             throw new IllegalArgumentException("Sobrenome não pode ser nulo ou vazio");
         }
         this.nome = nome;

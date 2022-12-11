@@ -1,0 +1,131 @@
+package br.com.gestao_escola.casodeuso.aluno;
+
+import br.com.gestao_escola.entidade.aluno.Aluno;
+import br.com.gestao_escola.entidade.aluno.Falta;
+import br.com.gestao_escola.entidade.aula.Aula;
+import br.com.gestao_escola.entidade.objetos.*;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static br.com.gestao_escola.entidade.objetos.DiaSemana.SEGUNDA;
+import static br.com.gestao_escola.entidade.objetos.DiaSemana.SEXTA;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static org.junit.jupiter.api.Assertions.*;
+
+class FaltaTeste {
+
+    protected FaltaValidaTeste faltaValida = new FaltaValidaTeste();
+    Aluno aluno = new Aluno("Pedro", "Silva"
+            , new Telefone("22", "12345678")
+            , new Endereco("x", "x", "x", "x", "x"
+            , new Cep("12345-678"))
+            , new Cpf("12345678910")
+            , new Email("teste@email.cm"));
+    Aula aula = new Aula( "Matematica", "Aula de matematica"
+            , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+            , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+            , SEGUNDA, SEXTA, null, TRUE);
+    Falta falta = new Falta(aluno, aula, "");
+    Falta presenca = new Falta(aluno, aula);
+
+    List<Falta> faltaList = List.of(falta
+            ,presenca
+            , new Falta(new Aluno("Pedro", "Silva"
+                    , new Telefone("22", "12345678")
+                    , new Endereco("x", "x", "x", "x", "x"
+                    , new Cep("12345-678"))
+                    , new Cpf("12345678922")
+                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+                    , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+                    , SEGUNDA, SEXTA, null, TRUE), "")
+            , new Falta(new Aluno("Pedro", "Silva"
+                    , new Telefone("22", "12345678")
+                    , new Endereco("x", "x", "x", "x", "x"
+                    , new Cep("12345-678"))
+                    , new Cpf("12345678920")
+                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+                    , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+                    , SEGUNDA, SEXTA, null, TRUE))
+            , new Falta(new Aluno("Pedro", "Silva"
+                    , new Telefone("22", "12345678")
+                    , new Endereco("x", "x", "x", "x", "x"
+                    , new Cep("12345-678"))
+                    , new Cpf("12345678935")
+                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+                    , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+                    , SEGUNDA, SEXTA, null, FALSE), ""));
+
+    List<Falta> faltaListCalculo = List.of(falta
+            ,presenca
+            , new Falta(new Aluno("Pedro", "Silva"
+                    , new Telefone("22", "12345678")
+                    , new Endereco("x", "x", "x", "x", "x"
+                    , new Cep("12345-678"))
+                    , new Cpf("12345678910")
+                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+                    , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+                    , SEGUNDA, SEXTA, null, TRUE))
+            , new Falta(new Aluno("Pedro", "Silva"
+                    , new Telefone("22", "12345678")
+                    , new Endereco("x", "x", "x", "x", "x"
+                    , new Cep("12345-678"))
+                    , new Cpf("12345678910")
+                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+                    , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+                    , SEGUNDA, SEXTA, null, TRUE))
+            , new Falta(new Aluno("Pedro", "Silva"
+                    , new Telefone("22", "12345678")
+                    , new Endereco("x", "x", "x", "x", "x"
+                    , new Cep("12345-678"))
+                    , new Cpf("12345678910")
+                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
+                    , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
+                    , SEGUNDA, SEXTA, null, TRUE)));
+
+    @Test
+    void criaFalta() {
+        String professor = "PROFESSOR";
+        assertNotNull(faltaValida.criaFalta(falta, professor));
+
+        assertNotNull(faltaValida.criaFalta(presenca, professor));
+    }
+
+    @Test
+    void criaPresenca() {
+        String professor = "PROFESSOR";
+        assertNotNull(faltaValida.criaPresenca(presenca, professor));
+    }
+
+    @Test
+    void editFalta() {
+        LocalDate date = LocalDate.of(2010, 07, 20);
+        faltaList.stream().filter(falta -> falta.getAluno().getCpf().getNumero().equals("12345678910") && falta.getNumeroFaltas() == 1)
+                .forEach(falta -> falta.setFalta_data(date));
+
+        faltaValida.editFalta(faltaList, "PROFESSOR", "12345678910", date);
+    }
+
+    @Test
+    void calculaFalta() {
+        assertTrue(faltaValida.calculaFalta(faltaListCalculo,  "PROFESSOR", "12345678910"));
+    }
+
+    @Test
+    void alunoReprovaFalta() {
+        faltaValida.calculaFalta(faltaListCalculo,  "PROFESSOR", "12345678910");
+        assertTrue(faltaValida.alunoReprovaFalta(faltaListCalculo.stream().iterator().next(),  "12345678910"));
+
+    }
+
+}

@@ -2,6 +2,8 @@ package br.com.gestao_escola.entidade.objetos;
 
 import lombok.Data;
 
+import java.util.logging.Logger;
+
 @Data
 public class Endereco {
 
@@ -15,18 +17,23 @@ public class Endereco {
     public Endereco(String rua, String numero, String bairro, String cidade, String estado, Cep cep) {
 
         if (rua == null || rua.isEmpty()) {
+            Logger.getLogger("Endereço").info("Rua invalida");
             throw new IllegalArgumentException("Rua invalida");
         }
         if (numero == null || numero.isEmpty()) {
+            Logger.getLogger("Endereço").info("Numero invalido");
             throw new IllegalArgumentException("Numero invalido");
         }
         if (bairro == null || bairro.isEmpty()) {
+            Logger.getLogger("Endereço").info("Bairro invalido");
             throw new IllegalArgumentException("Bairro invalido");
         }
         if (cidade == null || cidade.isEmpty()) {
+            Logger.getLogger("Endereço").info("Cidade invalida");
             throw new IllegalArgumentException("Cidade invalida");
         }
         if (estado == null || estado.isEmpty()) {
+            Logger.getLogger("Endereço").info("Estado invalido");
             throw new IllegalArgumentException("Estado invalido");
         }
         this.rua = rua;

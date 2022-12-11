@@ -8,9 +8,9 @@ Criar um projeto de gestão escolar, onde o usuário poderá cadastrar alunos, p
 
 **Requisitos**
 - [x] Criar um projeto no GitHub
-- [ ] Criar um esteira de integração contínua
-- [ ] Criar camada de domino
-- [ ] Criar TDD
+- [x] Criar um esteira de integração contínua
+- [x] Criar camada de domino
+- [x] Criar TDD
 - [ ] Criar uma API REST
 - [ ] Criar um banco de dados
 - [ ] Criar um autenticação

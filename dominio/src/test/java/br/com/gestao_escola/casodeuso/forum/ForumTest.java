@@ -1,7 +1,5 @@
 package br.com.gestao_escola.casodeuso.forum;
 
-
-import br.com.gestao_escola.casodeuso.forum.ForumValidaTest;
 import br.com.gestao_escola.entidade.aluno.Aluno;
 import br.com.gestao_escola.entidade.forum.Forum;
 import br.com.gestao_escola.entidade.objetos.*;

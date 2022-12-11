@@ -26,6 +26,12 @@ public abstract class AulaValida {
         if(aula.getDia_semana() == null || aula.getDia_semana().isEmpty()) {
             throw new IllegalArgumentException("Dia da semana da aula não pode ser vazio");
         }
+        if(aula.getData_inicio().isAfter(aula.getData_fim())) {
+            throw new IllegalArgumentException("Data de início da aula não pode ser maior que a data de fim");
+        }
+        if(aula.getHora_inicio().isAfter(aula.getHora_fim())) {
+            throw new IllegalArgumentException("Hora de início da aula não pode ser maior que a hora de fim");
+        }
     }
 
     public Aula criaAula(Aula aula) {

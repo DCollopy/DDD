@@ -3,6 +3,8 @@ package br.com.gestao_escola.entidade.disciplina;
 import br.com.gestao_escola.entidade.aluno.Aluno;
 import lombok.Data;
 
+import java.time.LocalDate;
+
 @Data
 public class Turma {
 
@@ -12,34 +14,38 @@ public class Turma {
 
     private String descricao;
 
-    private String data_inicio;
+    private LocalDate data_inicio;
 
-    private String data_fim;
+    private LocalDate data_fim;
 
     private Aluno aluno;
 
     private final int limite_alunos = 30;
 
-    private int quantidade_alunos ;
+    private int quantidade_alunos;
 
     private float media_turma;
 
     private boolean status;
 
-    public Turma() {}
+    public Turma() {
+    }
 
-    public Turma(String nome, String descricao, String data_inicio, String data_fim, Aluno aluno) {
+    public Turma(String nome, String descricao, LocalDate data_inicio, LocalDate data_fim, Aluno aluno) {
 
-        if(nome == null || nome.isEmpty()) {
+        if (nome == null || nome.isEmpty()) {
             throw new IllegalArgumentException("Nome da turma não pode ser nulo ou vazio");
         }
-        if(data_inicio == null || data_inicio.isEmpty()) {
+        if (data_inicio == null) {
             throw new IllegalArgumentException("Data de inicio da turma não pode ser nula ou vazia");
         }
-        if(data_fim == null || data_fim.isEmpty()) {
+        if (data_fim == null) {
             throw new IllegalArgumentException("Data de fim da turma não pode ser nula ou vazia");
         }
 
+        if(data_inicio.isAfter(data_fim)){
+            throw new IllegalArgumentException("Data de inicio da turma não pode ser maior que a data de fim");
+        }
 
         this.nome = nome;
         this.descricao = descricao;
@@ -48,13 +54,13 @@ public class Turma {
         this.aluno = aluno;
     }
 
-    public Turma (float media_turma) {
+    public Turma(float media_turma) {
         this.media_turma = media_turma;
     }
 
-    public Turma (int quantidade_alunos) {
+    public Turma(int quantidade_alunos) {
         quantidade_alunos += 1;
-        if(quantidade_alunos > limite_alunos) {
+        if (quantidade_alunos > limite_alunos) {
             throw new IllegalArgumentException("Limite de alunos excedido");
         }
         this.quantidade_alunos = quantidade_alunos;
