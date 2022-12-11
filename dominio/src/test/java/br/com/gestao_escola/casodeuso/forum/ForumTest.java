@@ -1,4 +1,4 @@
-package br.com.gestao_escola.casodeuso;
+package br.com.gestao_escola.casodeuso.forum;
 
 
 import br.com.gestao_escola.casodeuso.forum.ForumValidaTest;

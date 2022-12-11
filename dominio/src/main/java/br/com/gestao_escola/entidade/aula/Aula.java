@@ -1,6 +1,8 @@
 package br.com.gestao_escola.entidade.aula;
 
 import lombok.Data;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 public class Aula {
@@ -11,21 +13,26 @@ public class Aula {
 
     private String descricao;
 
-    private String data_inicio;
+    private LocalDate data_inicio;
 
-    private String data_fim;
+    private LocalDate data_fim;
 
-    private String hora_inicio;
+    private LocalTime hora_inicio;
 
-    private String hora_fim;
+    private LocalTime hora_fim;
 
     private String dia_semana;
 
-    private String status;
+    private String dia_semana_2;
+
+    private String dia_semana_3;
+    private Boolean status;
 
     private final double limite_faltas = 0.8;
 
-    public Aula(String nome, String descricao, String data_inicio, String data_fim, String hora_inicio, String hora_fim, String dia_semana, String status) {
+
+    public Aula(String nome, String descricao, LocalDate data_inicio, LocalDate data_fim, LocalTime hora_inicio,
+                LocalTime hora_fim, String dia_semana, String dia_semana_2, String dia_semana_3, Boolean status) {
         this.nome = nome;
         this.descricao = descricao;
         this.data_inicio = data_inicio;
@@ -33,8 +40,8 @@ public class Aula {
         this.hora_inicio = hora_inicio;
         this.hora_fim = hora_fim;
         this.dia_semana = dia_semana;
+        this.dia_semana_2 = dia_semana_2;
+        this.dia_semana_3 = dia_semana_3;
         this.status = status;
     }
-
-
 }
