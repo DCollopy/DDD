@@ -3,7 +3,6 @@ package br.com.gestao_escola.persistencia.casodeuso.aluno;
 import br.com.gestao_escola.dominio.casodeuso.aluno.AlunoValidaTest;
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
 import br.com.gestao_escola.dominio.entidade.objetos.*;
-import br.com.gestao_escola.entidade.objetos.*;
 import br.com.gestao_escola.dominio.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 

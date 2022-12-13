@@ -5,7 +5,6 @@ import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
 import br.com.gestao_escola.dominio.entidade.aluno.Nota;
 import br.com.gestao_escola.dominio.entidade.aula.Aula;
 import br.com.gestao_escola.dominio.entidade.objetos.*;
-import br.com.gestao_escola.entidade.objetos.*;
 import br.com.gestao_escola.dominio.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,7 @@ import java.util.List;
 import static br.com.gestao_escola.dominio.entidade.objetos.DiaSemana.SEGUNDA;
 import static br.com.gestao_escola.dominio.entidade.objetos.DiaSemana.SEXTA;
 import static java.lang.Boolean.TRUE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class NotaTeste {
 

@@ -2,7 +2,6 @@ package br.com.gestao_escola.persistencia.casodeuso.professor;
 
 import br.com.gestao_escola.dominio.casodeuso.professor.ProfessorValidaTest;
 import br.com.gestao_escola.dominio.entidade.objetos.*;
-import br.com.gestao_escola.entidade.objetos.*;
 import br.com.gestao_escola.dominio.entidade.professor.Professor;
 import org.junit.jupiter.api.Test;
 

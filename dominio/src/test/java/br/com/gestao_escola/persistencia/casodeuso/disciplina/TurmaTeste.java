@@ -4,7 +4,6 @@ import br.com.gestao_escola.dominio.casodeuso.disciplina.TurmaValidaTeste;
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
 import br.com.gestao_escola.dominio.entidade.disciplina.Turma;
 import br.com.gestao_escola.dominio.entidade.objetos.*;
-import br.com.gestao_escola.entidade.objetos.*;
 import br.com.gestao_escola.dominio.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 

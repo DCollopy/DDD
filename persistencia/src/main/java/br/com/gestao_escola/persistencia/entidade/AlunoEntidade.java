@@ -8,7 +8,6 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.Set;
 
-
 @Entity
 @Data
 @Table(name = "aluno")

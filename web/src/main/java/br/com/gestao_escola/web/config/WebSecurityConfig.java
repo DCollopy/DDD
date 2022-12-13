@@ -1,4 +1,4 @@
-package br.com.gestao_escola.config;
+package br.com.gestao_escola.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
