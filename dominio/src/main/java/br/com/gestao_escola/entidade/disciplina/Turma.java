@@ -4,6 +4,7 @@ import br.com.gestao_escola.entidade.aluno.Aluno;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 public class Turma {
@@ -18,7 +19,7 @@ public class Turma {
 
     private LocalDate data_fim;
 
-    private Aluno aluno;
+    private List<Aluno> aluno;
 
     private final int limite_alunos = 30;
 
@@ -26,12 +27,12 @@ public class Turma {
 
     private float media_turma;
 
-    private boolean status;
+    private boolean turmaAtiva;
 
     public Turma() {
     }
 
-    public Turma(String nome, String descricao, LocalDate data_inicio, LocalDate data_fim, Aluno aluno) {
+    public Turma(String nome, String descricao, LocalDate data_inicio, LocalDate data_fim) {
 
         if (nome == null || nome.isEmpty()) {
             throw new IllegalArgumentException("Nome da turma não pode ser nulo ou vazio");
@@ -51,7 +52,6 @@ public class Turma {
         this.descricao = descricao;
         this.data_inicio = data_inicio;
         this.data_fim = data_fim;
-        this.aluno = aluno;
     }
 
     public Turma(float media_turma) {
