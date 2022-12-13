@@ -10,7 +10,7 @@ public abstract class AlunoValida {
     public Aluno criaAluno(Aluno aluno) {
         try {
             return new Aluno(aluno.getNome(), aluno.getSobrenome(), aluno.getTelefone(), aluno.getEndereco()
-                    , aluno.getCpf(), aluno.getEmail());
+                    , aluno.getCpf(), aluno.getEmail(), aluno.getResponsavel());
         } catch (Exception e) {
             Logger.getLogger("Aluno").info("Aluno nao criada");
             throw new IllegalArgumentException("Ops, algo deu errado");
@@ -22,7 +22,7 @@ public abstract class AlunoValida {
             if (cpf.equals(aluno.getCpf())) {
                 Logger.getLogger("Aluno").info("Aluno editada com sucesso");
                 return new Aluno(aluno.getNome(), aluno.getSobrenome(), aluno.getTelefone(), aluno.getEndereco()
-                        , aluno.getCpf(), aluno.getEmail());
+                        , aluno.getCpf(), aluno.getEmail(), aluno.getResponsavel());
             }
             Logger.getLogger("Aluno").info("Aluno nao editada");
             throw new IllegalArgumentException("Aluno nao editada");

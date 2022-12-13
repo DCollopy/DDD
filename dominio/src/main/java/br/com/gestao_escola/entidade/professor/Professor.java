@@ -41,7 +41,7 @@ public class Professor  extends Pessoa {
     }
 
     @Override
-    public String geraMatricula() {
+    public String pegaMatricula() {
         return this.matricula;
     }
 

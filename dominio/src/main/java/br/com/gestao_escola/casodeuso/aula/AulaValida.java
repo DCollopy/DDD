@@ -39,7 +39,7 @@ public abstract class AulaValida {
             validaAula(aula);
             return new Aula(aula.getNome(), aula.getDescricao(), aula.getData_inicio(), aula.getData_fim()
                     , aula.getHora_inicio(), aula.getHora_fim(), aula.getDia_semana(), aula.getDia_semana_2()
-                    , aula.getDia_semana_3(), aula.getStatus());
+                    , aula.getDia_semana_3(), aula.getAulaAtiva());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }

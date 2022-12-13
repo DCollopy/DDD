@@ -26,13 +26,13 @@ public class Aula {
     private String dia_semana_2;
 
     private String dia_semana_3;
-    private Boolean status;
+    private Boolean aulaAtiva;
 
     private final double limite_faltas = 0.8;
 
 
     public Aula(String nome, String descricao, LocalDate data_inicio, LocalDate data_fim, LocalTime hora_inicio,
-                LocalTime hora_fim, String dia_semana, String dia_semana_2, String dia_semana_3, Boolean status) {
+                LocalTime hora_fim, String dia_semana, String dia_semana_2, String dia_semana_3, Boolean aulaAtiva) {
         this.nome = nome;
         this.descricao = descricao;
         this.data_inicio = data_inicio;
@@ -42,6 +42,6 @@ public class Aula {
         this.dia_semana = dia_semana;
         this.dia_semana_2 = dia_semana_2;
         this.dia_semana_3 = dia_semana_3;
-        this.status = status;
+        this.aulaAtiva = aulaAtiva;
     }
 }

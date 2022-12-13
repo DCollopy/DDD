@@ -14,18 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ForumTest {
 
     protected ForumValidaTest forumTest = new ForumValidaTest();
+
     Professor professor = new Professor("Joao", "Silva",
             new Cpf("12345678910"));
-
-    Aluno aluno = new Aluno("Joao", "Silva",
-            new Cpf("12345678910"));
-
     Responsavel responsavel = new Responsavel("Joao", "Silva"
             , new Telefone("22", "12345678")
             , new Endereco("x", "x", "x", "x", "x"
             , new Cep("12345-678"))
             , new Cpf("12345678910")
             , new Email("vanessa@email.com"));
+    Aluno aluno = new Aluno("Joao", "Silva",
+            new Cpf("12345678910"),responsavel);
 
     @Test
     void naoCriaForm() {

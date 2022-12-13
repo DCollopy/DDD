@@ -53,11 +53,11 @@ public abstract class FaltaValida {
         }
     }
 
-    public boolean calculaFalta(List<Falta> falta, String professor, String cpf) {
+    public List<Falta> calculaFalta(List<Falta> falta, String professor, String cpf) {
         try {
             setFaltas(falta, professor, cpf);
             Logger.getLogger("Falta").info("Presenca calculada com sucesso");
-            return true;
+            return setFaltas(falta, professor, cpf);
         } catch (Exception e) {
             Logger.getLogger("Falta").info("Presenca nao calculada");
             throw new IllegalArgumentException("Ops, algo deu errado");
@@ -66,7 +66,7 @@ public abstract class FaltaValida {
 
     public boolean alunoReprovaFalta(Falta falta, String cpf) {
         try {
-            if (falta.getAluno().getCpf().getNumero().contains(cpf) && falta.getAula().getStatus()) {
+            if (falta.getAluno().getCpf().getNumero().contains(cpf) && falta.getAula().getAulaAtiva()) {
                 int total = (falta.getTotalFaltas() + falta.getTotalPreenca());
                 double aulas = total * 0.8;
                 Logger.getLogger("Falta").info("Falta do aluno calculada com sucesso");
@@ -79,11 +79,11 @@ public abstract class FaltaValida {
         return false;
     }
 
-    public void setFaltas(List<Falta> falta, String professor, String cpf) {
+    public List<Falta> setFaltas(List<Falta> falta, String professor, String cpf) {
         int totalPresenca;
         int totalFalta;
         if (professor.equals("PROFESSOR") && falta.stream()
-                .filter(f -> f.getAula().getStatus())
+                .filter(f -> f.getAula().getAulaAtiva())
                 .anyMatch(f -> f.getAluno().getCpf().getNumero().contains(cpf))) {
 
             totalPresenca = falta.stream()
@@ -97,6 +97,9 @@ public abstract class FaltaValida {
                         f.setTotalFaltas(totalFalta);
                         f.setTotalPreenca(totalPresenca);
                     });
+            return falta;
+        }else {
+            throw new IllegalArgumentException("Ops, algo deu errado");
         }
     }
 }

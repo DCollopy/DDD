@@ -21,7 +21,7 @@ public class Responsavel extends Pessoa {
     }
 
     @Override
-    public String geraMatricula() {
+    public String pegaMatricula() {
         return this.perfil;
     }
 }

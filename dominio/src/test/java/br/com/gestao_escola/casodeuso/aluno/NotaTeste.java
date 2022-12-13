@@ -4,6 +4,7 @@ import br.com.gestao_escola.entidade.aluno.Aluno;
 import br.com.gestao_escola.entidade.aluno.Nota;
 import br.com.gestao_escola.entidade.aula.Aula;
 import br.com.gestao_escola.entidade.objetos.*;
+import br.com.gestao_escola.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -19,12 +20,19 @@ class NotaTeste {
 
     protected NotaValidaTeste notaValidaTeste = new NotaValidaTeste();
 
-    Aluno aluno = new Aluno("Pedro", "Silva"
+    Responsavel responsavel = new Responsavel("Viviane", "Chaves"
             , new Telefone("22", "12345678")
             , new Endereco("x", "x", "x", "x", "x"
             , new Cep("12345-678"))
             , new Cpf("12345678910")
             , new Email("teste@email.cm"));
+    Aluno aluno = new Aluno("Pedro", "Silva"
+            , new Telefone("22", "12345678")
+            , new Endereco("x", "x", "x", "x", "x"
+            , new Cep("12345-678"))
+            , new Cpf("12345678910")
+            , new Email("teste@email.cm")
+            , responsavel);
 
     Aula aula = new Aula( "Matematica", "Aula de matematica"
             , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)

@@ -4,6 +4,7 @@ import br.com.gestao_escola.entidade.aluno.Aluno;
 import br.com.gestao_escola.entidade.aluno.Falta;
 import br.com.gestao_escola.entidade.aula.Aula;
 import br.com.gestao_escola.entidade.objetos.*;
+import br.com.gestao_escola.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -20,16 +21,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class FaltaTeste {
 
     protected FaltaValidaTeste faltaValida = new FaltaValidaTeste();
-    Aluno aluno = new Aluno("Pedro", "Silva"
+
+    Responsavel responsavel = new Responsavel("Viviane", "Chaves"
             , new Telefone("22", "12345678")
             , new Endereco("x", "x", "x", "x", "x"
             , new Cep("12345-678"))
             , new Cpf("12345678910")
             , new Email("teste@email.cm"));
+    Aluno aluno = new Aluno("Pedro", "Silva"
+            , new Telefone("22", "12345678")
+            , new Endereco("x", "x", "x", "x", "x"
+            , new Cep("12345-678"))
+            , new Cpf("12345678910")
+            , new Email("teste@email.cm")
+            , responsavel);
     Aula aula = new Aula( "Matematica", "Aula de matematica"
             , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
             , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
             , SEGUNDA, SEXTA, null, TRUE);
+
     Falta falta = new Falta(aluno, aula, "");
     Falta presenca = new Falta(aluno, aula);
 
@@ -40,7 +50,9 @@ class FaltaTeste {
                     , new Endereco("x", "x", "x", "x", "x"
                     , new Cep("12345-678"))
                     , new Cpf("12345678922")
-                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , new Email("teste@email.cm")
+                    ,responsavel)
+                    , new Aula( "Matematica", "Aula de matematica"
                     , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
                     , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
                     , SEGUNDA, SEXTA, null, TRUE), "")
@@ -49,7 +61,9 @@ class FaltaTeste {
                     , new Endereco("x", "x", "x", "x", "x"
                     , new Cep("12345-678"))
                     , new Cpf("12345678920")
-                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , new Email("teste@email.cm")
+                    ,responsavel)
+                    , new Aula( "Matematica", "Aula de matematica"
                     , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
                     , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
                     , SEGUNDA, SEXTA, null, TRUE))
@@ -58,7 +72,9 @@ class FaltaTeste {
                     , new Endereco("x", "x", "x", "x", "x"
                     , new Cep("12345-678"))
                     , new Cpf("12345678935")
-                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , new Email("teste@email.cm")
+                    ,responsavel)
+                    , new Aula( "Matematica", "Aula de matematica"
                     , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
                     , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
                     , SEGUNDA, SEXTA, null, FALSE), ""));
@@ -70,7 +86,9 @@ class FaltaTeste {
                     , new Endereco("x", "x", "x", "x", "x"
                     , new Cep("12345-678"))
                     , new Cpf("12345678910")
-                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , new Email("teste@email.cm")
+                    , responsavel)
+                    , new Aula( "Matematica", "Aula de matematica"
                     , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
                     , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
                     , SEGUNDA, SEXTA, null, TRUE))
@@ -79,7 +97,9 @@ class FaltaTeste {
                     , new Endereco("x", "x", "x", "x", "x"
                     , new Cep("12345-678"))
                     , new Cpf("12345678910")
-                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , new Email("teste@email.cm")
+                    , responsavel)
+                    , new Aula( "Matematica", "Aula de matematica"
                     , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
                     , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
                     , SEGUNDA, SEXTA, null, TRUE))
@@ -88,7 +108,9 @@ class FaltaTeste {
                     , new Endereco("x", "x", "x", "x", "x"
                     , new Cep("12345-678"))
                     , new Cpf("12345678910")
-                    , new Email("teste@email.cm")),  new Aula( "Matematica", "Aula de matematica"
+                    , new Email("teste@email.cm")
+                    , responsavel)
+                    , new Aula( "Matematica", "Aula de matematica"
                     , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
                     , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
                     , SEGUNDA, SEXTA, null, TRUE)));
@@ -117,8 +139,20 @@ class FaltaTeste {
     }
 
     @Test
+    void naoCalculaFatal() {
+        String professor = "PROFESSOR";
+        assertThrows(IllegalArgumentException.class, () -> faltaValida.calculaFalta(faltaListCalculo, "ADMIN", "12345678910"));
+
+        assertThrows(IllegalArgumentException.class, () -> faltaValida.calculaFalta(faltaListCalculo, professor, "12345678944"));
+
+        faltaListCalculo.stream().filter(falta -> falta.getAluno().getCpf().getNumero().equals("12345678910"))
+                .forEach(falta -> falta.getAula().setAulaAtiva(FALSE));
+
+        assertThrows(IllegalArgumentException.class, () -> faltaValida.calculaFalta(faltaListCalculo, professor, "12345678910"));
+    }
+    @Test
     void calculaFalta() {
-        assertTrue(faltaValida.calculaFalta(faltaListCalculo,  "PROFESSOR", "12345678910"));
+        assertNotNull(faltaValida.calculaFalta(faltaListCalculo,  "PROFESSOR", "12345678910"));
     }
 
     @Test

@@ -6,6 +6,7 @@ import br.com.gestao_escola.entidade.disciplina.Disciplina;
 import br.com.gestao_escola.entidade.disciplina.Turma;
 import br.com.gestao_escola.entidade.objetos.*;
 import br.com.gestao_escola.entidade.professor.Professor;
+import br.com.gestao_escola.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -18,23 +19,27 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DisciplinaTeste {
-
     protected DisciplinaValidaTeste disciplinaValidaTeste = new DisciplinaValidaTeste();
-
-    Aluno aluno = new Aluno("Pedro", "Silva"
+    Responsavel responsavel = new Responsavel("Viviane", "Chaves"
             , new Telefone("22", "12345678")
             , new Endereco("x", "x", "x", "x", "x"
             , new Cep("12345-678"))
             , new Cpf("12345678910")
             , new Email("teste@email.cm"));
+    Aluno aluno = new Aluno("Pedro", "Silva"
+            , new Telefone("22", "12345678")
+            , new Endereco("x", "x", "x", "x", "x"
+            , new Cep("12345-678"))
+            , new Cpf("12345678910")
+            , new Email("teste@email.cm")
+            , responsavel);
     Aula aula = new Aula("Matematica", "Aula de matematica"
             , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
             , LocalTime.of(20, 20, 00), LocalTime.of(22, 00, 00)
             , SEGUNDA, SEXTA, null, TRUE);
 
     Turma turma = new Turma("Turma 1", "Turma de matematica"
-            , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22)
-            , aluno);
+            , LocalDate.of(2010, 07, 20), LocalDate.of(2010, 12, 22));
 
     Professor professor = new Professor("Joao", "Silva"
             , new Telefone("22", "12345678")

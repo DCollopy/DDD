@@ -59,5 +59,5 @@ public abstract class Pessoa {
 
     public abstract String perfil();
 
-    public abstract String geraMatricula();
+    public abstract String pegaMatricula();
 }

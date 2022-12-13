@@ -5,7 +5,7 @@ import br.com.gestao_escola.entidade.responsavel.Responsavel;
 public abstract class ResponsavelValida {
 
     public void valida(Responsavel responsavel){
-        if(responsavel.geraMatricula() == null || responsavel.geraMatricula().isEmpty()){
+        if(responsavel.pegaMatricula() == null || responsavel.pegaMatricula().isEmpty()){
             throw new IllegalArgumentException("Matricula não foi gerada");
         }
     }
