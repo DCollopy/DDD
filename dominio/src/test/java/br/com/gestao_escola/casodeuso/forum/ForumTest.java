@@ -1,4 +1,4 @@
-package br.com.gestao_escola.persistencia.casodeuso.forum;
+package br.com.gestao_escola.casodeuso.forum;
 
 import br.com.gestao_escola.dominio.casodeuso.forum.ForumValidaTest;
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;

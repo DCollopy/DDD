@@ -1,4 +1,4 @@
-package br.com.gestao_escola.persistencia.casodeuso.disciplina;
+package br.com.gestao_escola.casodeuso.disciplina;
 
 import br.com.gestao_escola.dominio.casodeuso.disciplina.TurmaValidaTeste;
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;

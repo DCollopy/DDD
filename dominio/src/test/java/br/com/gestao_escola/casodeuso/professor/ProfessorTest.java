@@ -1,4 +1,4 @@
-package br.com.gestao_escola.persistencia.casodeuso.professor;
+package br.com.gestao_escola.casodeuso.professor;
 
 import br.com.gestao_escola.dominio.casodeuso.professor.ProfessorValidaTest;
 import br.com.gestao_escola.dominio.entidade.objetos.*;

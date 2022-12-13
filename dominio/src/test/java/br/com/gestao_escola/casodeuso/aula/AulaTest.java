@@ -1,4 +1,4 @@
-package br.com.gestao_escola.persistencia.casodeuso.aula;
+package br.com.gestao_escola.casodeuso.aula;
 
 import br.com.gestao_escola.dominio.casodeuso.aula.AulaValidaTest;
 import br.com.gestao_escola.dominio.entidade.aula.Aula;

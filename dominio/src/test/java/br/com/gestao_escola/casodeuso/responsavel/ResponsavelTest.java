@@ -1,4 +1,4 @@
-package br.com.gestao_escola.persistencia.casodeuso.responsavel;
+package br.com.gestao_escola.casodeuso.responsavel;
 
 import br.com.gestao_escola.dominio.casodeuso.responsavel.ResponsavelValidaTest;
 import br.com.gestao_escola.dominio.entidade.objetos.*;
