@@ -1,9 +1,10 @@
 package br.com.gestao_escola.persistencia.entidade;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
+
 import lombok.Data;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Embeddable
@@ -17,4 +18,16 @@ public class EnderecoEntidade implements Serializable {
     private String cidade;
     private String estado;
     private CepEntidade cep;
+
+    public EnderecoEntidade(String rua, String num, String bairro, String cidade, String estado, CepEntidade cep) {
+        this.rua = rua;
+        this.num = num;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+    }
+
+    public EnderecoEntidade() {
+    }
 }

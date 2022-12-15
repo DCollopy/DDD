@@ -1,9 +1,10 @@
 package br.com.gestao_escola.persistencia.entidade;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
+
 import lombok.Data;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Table;
 import java.io.Serializable;
 @Embeddable
 @Data
@@ -12,4 +13,10 @@ public class EmailEntidade implements Serializable {
 
     private String email;
 
+    public EmailEntidade(String email) {
+        this.email = email;
+    }
+
+    public EmailEntidade() {
+    }
 }

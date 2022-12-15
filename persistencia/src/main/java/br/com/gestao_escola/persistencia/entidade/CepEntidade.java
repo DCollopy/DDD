@@ -1,9 +1,10 @@
 package br.com.gestao_escola.persistencia.entidade;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
+
 import lombok.Data;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Embeddable
@@ -11,5 +12,13 @@ import java.io.Serializable;
 @Table(name = "cep")
 public class CepEntidade implements Serializable {
 
-    private String cep;
+    private String numero_cep;
+
+    public CepEntidade(String numero_cep) {
+        this.numero_cep = numero_cep;
+    }
+
+    public CepEntidade() {
+    }
 }
+

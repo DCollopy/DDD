@@ -1,17 +1,16 @@
 package br.com.gestao_escola.persistencia.entidade;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.Data;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import java.io.Serializable;
 
-@Entity
+@MappedSuperclass
 @Data
 @Table(name = "pessoa")
 public class PessoaEntidade implements Serializable {
-
 
     private String nome;
 
@@ -25,4 +24,22 @@ public class PessoaEntidade implements Serializable {
     private CpfEntidade cpf;
 
     private EmailEntidade email;
+
+    public PessoaEntidade() {
+    }
+
+    public PessoaEntidade(String nome, String sobrenome, TelefoneEntidade telefone, EnderecoEntidade endereco, CpfEntidade cpf, EmailEntidade email) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.cpf = cpf;
+        this.email = email;
+    }
+
+    public PessoaEntidade(String nome, String sobrenome, CpfEntidade cpf) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
+    }
 }

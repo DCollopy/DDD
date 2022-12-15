@@ -1,10 +1,11 @@
 package br.com.gestao_escola.persistencia.entidade;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Table;
+
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Embeddable
@@ -15,6 +16,13 @@ public class TelefoneEntidade implements Serializable {
     @Column(length = 2)
     private String ddd;
     @Column(length = 11)
-    private String numero;
+    private String numero_telefone;
 
+    public TelefoneEntidade(String ddd, String numero_telefone) {
+        this.ddd = ddd;
+        this.numero_telefone = numero_telefone;
+    }
+
+    public TelefoneEntidade() {
+    }
 }

@@ -1,43 +1,41 @@
 package br.com.gestao_escola.persistencia.entidade;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Data;
+
+import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Set;
+
 
 @Entity
 @Data
 @Table(name = "aluno")
 public class AlunoEntidade extends PessoaEntidade implements Serializable {
-
     private String matricula;
 
     private String perfil;
 
-    private String turma;
+    @ManyToMany
+    private Set<FaltaEntidade> falta;
 
-    private FaltaEntidade falta;
+    @ManyToMany
+    private Set<TurmaEntidade> turma;
+    @OneToOne
+    private ResponsavelEntidade responsavel;
 
-    @OneToMany(mappedBy = "aluno")
-    private Set<ResponsavelEntidade> responsavel;
-
-    protected AlunoEntidade() {
+    public AlunoEntidade() {
     }
 
-    public AlunoEntidade(String matricula, String perfil, String turma,Set<ResponsavelEntidade> responsavel) {
-        this.matricula = matricula;
-        this.perfil = perfil;
-        this.turma = turma;
-        this.falta = falta;
+    public AlunoEntidade(String nome, String sobrenome, TelefoneEntidade telefone, EnderecoEntidade endereco
+            , CpfEntidade cpf, EmailEntidade email, ResponsavelEntidade responsavel) {
+        super(nome, sobrenome, telefone, endereco, cpf, email);
         this.responsavel = responsavel;
     }
 
-    public AlunoEntidade(String matricula, String perfil, Set<ResponsavelEntidade> responsavel) {
-        this.matricula = matricula;
-        this.perfil = perfil;
+    public AlunoEntidade(String nome, String sobrenome
+            , CpfEntidade cpf,ResponsavelEntidade responsavel) {
+        super(nome, sobrenome, cpf);
         this.responsavel = responsavel;
     }
 }
