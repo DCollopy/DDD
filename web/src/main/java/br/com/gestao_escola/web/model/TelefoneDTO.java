@@ -1,19 +1,16 @@
 package br.com.gestao_escola.web.model;
 
-import br.com.gestao_escola.dominio.entidade.objetos.Telefone;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder
 public class TelefoneDTO {
 
     private String ddd;
 
-    private String numero;
+    private String numero_telefone;
 
     public TelefoneDTO() {
-    }
-
-    public Telefone converteDtoParaTelefone() {
-        return new Telefone(this.getDdd(), this.getNumero());
     }
 }

@@ -54,6 +54,6 @@ class NotaTeste {
 
     @Test
     void mediaNota() {
-        assertNotNull(notaValidaTeste.mediaNota(notaList, aluno.getCpf().getNumero(), nota.getId(), "PROFESSOR"));
+        assertNotNull(notaValidaTeste.mediaNota(notaList, aluno.getCpf().getCpf(), nota.getId(), "PROFESSOR"));
     }
 }

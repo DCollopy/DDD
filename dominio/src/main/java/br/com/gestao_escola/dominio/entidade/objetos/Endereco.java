@@ -8,19 +8,22 @@ import java.util.logging.Logger;
 public class Endereco {
 
     private String rua;
-    private String numero;
+    private String num;
     private String bairro;
     private String cidade;
     private String estado;
     private Cep cep;
 
-    public Endereco(String rua, String numero, String bairro, String cidade, String estado, Cep cep) {
+    public Endereco() {
+    }
+
+    public Endereco(String rua, String num, String bairro, String cidade, String estado, Cep cep) {
 
         if (rua == null || rua.isEmpty()) {
             Logger.getLogger("Endereço").info("Rua invalida");
             throw new IllegalArgumentException("Rua invalida");
         }
-        if (numero == null || numero.isEmpty()) {
+        if (num == null || num.isEmpty()) {
             Logger.getLogger("Endereço").info("Numero invalido");
             throw new IllegalArgumentException("Numero invalido");
         }
@@ -37,7 +40,7 @@ public class Endereco {
             throw new IllegalArgumentException("Estado invalido");
         }
         this.rua = rua;
-        this.numero = numero;
+        this.num = num;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;

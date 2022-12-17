@@ -6,24 +6,22 @@ import br.com.gestao_escola.dominio.entidade.disciplina.Turma;
 import lombok.Data;
 
 import java.time.Year;
+import java.util.Set;
 import java.util.logging.Logger;
 
 @Data
 public class Aluno extends Pessoa {
-
-    private final String matricula = "ALU" + Year.now().getValue() + this.getCpf().getNumero();
-
+    private final String matricula = "ALU" + Year.now().getValue() + this.getCpf().getCpf();
     private final String perfil = "ALUNO";
 
-    private Turma turma;
-
-    private Falta falta;
+    private Set<Falta> falta;
+    private Set<Turma> turma;
 
     private Responsavel responsavel;
 
     public Aluno(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email, Responsavel responsavel) {
         super(nome, sobrenome, telefone, endereco, cpf, email);
-        if(responsavel == null){
+        if (responsavel == null) {
             Logger.getLogger("Aluno").info("Responsavel nao pode ser nulo");
             throw new IllegalArgumentException("Responsavel nao pode ser nulo");
         }
@@ -32,7 +30,7 @@ public class Aluno extends Pessoa {
 
     public Aluno(String nome, String sobrenome, Cpf cpf, Responsavel responsavel) {
         super(nome, sobrenome, cpf);
-        if(responsavel == null){
+        if (responsavel == null) {
             Logger.getLogger("Aluno").info("Responsavel nao pode ser nulo");
             throw new IllegalArgumentException("Responsavel nao pode ser nulo");
         }
@@ -43,7 +41,7 @@ public class Aluno extends Pessoa {
         super();
     }
 
-    public Aluno(Turma turma) {
+    public Aluno(Set<Turma> turma) {
         this.turma = turma;
     }
 

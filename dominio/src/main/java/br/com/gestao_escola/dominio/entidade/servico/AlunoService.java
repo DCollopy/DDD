@@ -1,6 +1,7 @@
 package br.com.gestao_escola.dominio.entidade.servico;
 
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
+import br.com.gestao_escola.dominio.entidade.objetos.Cpf;
 
 import java.util.List;
 
@@ -8,13 +9,13 @@ public interface AlunoService {
 
     void save(Aluno aluno);
 
-    Aluno findOne(String cpf);
+    Aluno findOne(Cpf cpf);
 
-    Boolean exist(String cpf);
+    Boolean exist(Aluno aluno);
 
-    Aluno edit(Aluno aluno, String cpf);
-
-    void delete(String cpf);
+    void edit(Aluno aluno);
 
     List<Aluno> listAll();
+
+    void delete(Cpf cpf);
 }

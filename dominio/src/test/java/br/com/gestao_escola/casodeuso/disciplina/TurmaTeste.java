@@ -31,13 +31,6 @@ class TurmaTeste {
                     , new Cep("12345-678"))
                     , new Cpf("12345678910")
                     , new Email("teste@email.cm"), responsavel);
-    Aluno aluno1 = new Aluno("Teste12", "Silva"
-            , new Telefone("22", "12345678")
-            , new Endereco("x", "x", "x", "x", "x"
-            , new Cep("12345-678"))
-            , new Cpf("12345678911")
-            , new Email("teste@email.cm"), responsavel);
-
 
     @Test
     void naoCriaTurma() {

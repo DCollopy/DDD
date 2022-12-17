@@ -36,7 +36,7 @@ public abstract class FaltaValida {
 
     public void editFalta(List<Falta> falta, String professor, String cpf, LocalDate acheData) {
         try {
-            if (professor.equals("PROFESSOR") && falta.stream().anyMatch(c -> c.getAluno().getCpf().getNumero().contains(cpf))) {
+            if (professor.equals("PROFESSOR") && falta.stream().anyMatch(c -> c.getAluno().getCpf().getCpf().contains(cpf))) {
 
                 falta.stream().filter(f -> f.getFalta_data() == acheData && f.getNumeroFaltas() == 1).forEach(f -> {
                     f.setNumeroFaltas(f.getNumeroFaltas() - 1);
@@ -66,7 +66,7 @@ public abstract class FaltaValida {
 
     public boolean alunoReprovaFalta(Falta falta, String cpf) {
         try {
-            if (falta.getAluno().getCpf().getNumero().contains(cpf) && falta.getAula().getAulaAtiva()) {
+            if (falta.getAluno().getCpf().getCpf().contains(cpf) && falta.getAula().getAulaAtiva()) {
                 int total = (falta.getTotalFaltas() + falta.getTotalPreenca());
                 double aulas = total * 0.8;
                 Logger.getLogger("Falta").info("Falta do aluno calculada com sucesso");
@@ -84,16 +84,16 @@ public abstract class FaltaValida {
         int totalFalta;
         if (professor.equals("PROFESSOR") && falta.stream()
                 .filter(f -> f.getAula().getAulaAtiva())
-                .anyMatch(f -> f.getAluno().getCpf().getNumero().contains(cpf))) {
+                .anyMatch(f -> f.getAluno().getCpf().getCpf().contains(cpf))) {
 
             totalPresenca = falta.stream()
-                    .filter(f -> f.getAluno().getCpf().getNumero().contains(cpf))
+                    .filter(f -> f.getAluno().getCpf().getCpf().contains(cpf))
                     .mapToInt(Falta::getNumeroPresenca).sum();
             totalFalta = falta.stream()
-                    .filter(f -> f.getAluno().getCpf().getNumero().contains(cpf))
+                    .filter(f -> f.getAluno().getCpf().getCpf().contains(cpf))
                     .mapToInt(Falta::getNumeroFaltas).sum();
             falta.stream()
-                    .filter(f -> f.getAluno().getCpf().getNumero().contains(cpf)).forEach(f -> {
+                    .filter(f -> f.getAluno().getCpf().getCpf().contains(cpf)).forEach(f -> {
                         f.setTotalFaltas(totalFalta);
                         f.setTotalPreenca(totalPresenca);
                     });

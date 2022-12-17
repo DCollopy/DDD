@@ -132,7 +132,7 @@ class FaltaTeste {
     @Test
     void editFalta() {
         LocalDate date = LocalDate.of(2010, 07, 20);
-        faltaList.stream().filter(falta -> falta.getAluno().getCpf().getNumero().equals("12345678910") && falta.getNumeroFaltas() == 1)
+        faltaList.stream().filter(falta -> falta.getAluno().getCpf().getCpf().equals("12345678910") && falta.getNumeroFaltas() == 1)
                 .forEach(falta -> falta.setFalta_data(date));
 
         faltaValida.editFalta(faltaList, "PROFESSOR", "12345678910", date);
@@ -145,7 +145,7 @@ class FaltaTeste {
 
         assertThrows(IllegalArgumentException.class, () -> faltaValida.calculaFalta(faltaListCalculo, professor, "12345678944"));
 
-        faltaListCalculo.stream().filter(falta -> falta.getAluno().getCpf().getNumero().equals("12345678910"))
+        faltaListCalculo.stream().filter(falta -> falta.getAluno().getCpf().getCpf().equals("12345678910"))
                 .forEach(falta -> falta.getAula().setAulaAtiva(FALSE));
 
         assertThrows(IllegalArgumentException.class, () -> faltaValida.calculaFalta(faltaListCalculo, professor, "12345678910"));

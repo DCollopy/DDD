@@ -8,7 +8,7 @@ import java.time.Year;
 @Data
 public class Admin extends Pessoa {
 
-    private final String matricula = "ADMIN" + Year.now().getValue() + this.getCpf().getNumero();
+    private final String matricula = "ADMIN" + Year.now().getValue() + this.getCpf().getCpf();
     private final String perfil = "ADMIN";
 
     public Admin(String nome, String sobrenome, Cpf cpf) {

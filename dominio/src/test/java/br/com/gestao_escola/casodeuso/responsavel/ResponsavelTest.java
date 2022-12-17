@@ -5,6 +5,7 @@ import br.com.gestao_escola.dominio.entidade.objetos.*;
 import br.com.gestao_escola.dominio.entidade.responsavel.Responsavel;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -75,5 +76,12 @@ class ResponsavelTest {
     @Test
     void criaResponsavel() {
         assertNotNull(responsavelValidaTest.criaResponsavel(responsavel));
+    }
+
+    @Test
+    void editaResponsavel() {
+        responsavel.setNome("Pedro");
+        responsavelValidaTest.editaResponsavel(responsavel);
+        assertEquals("Pedro", responsavel.getNome());
     }
 }

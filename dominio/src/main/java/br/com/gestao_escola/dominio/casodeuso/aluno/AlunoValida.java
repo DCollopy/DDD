@@ -1,14 +1,13 @@
 package br.com.gestao_escola.dominio.casodeuso.aluno;
 
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
-import br.com.gestao_escola.dominio.entidade.objetos.Cpf;
-
 import java.util.logging.Logger;
 
 public abstract class AlunoValida {
 
     public Aluno criaAluno(Aluno aluno) {
         try {
+            Logger.getLogger("Aluno").info("Aluno criado com sucesso");
             return new Aluno(aluno.getNome(), aluno.getSobrenome(), aluno.getTelefone(), aluno.getEndereco()
                     , aluno.getCpf(), aluno.getEmail(), aluno.getResponsavel());
         } catch (Exception e) {
@@ -17,15 +16,12 @@ public abstract class AlunoValida {
         }
     }
 
-    public Aluno editAluno(Aluno aluno, Cpf cpf) {
+    public Aluno editAluno(Aluno aluno) {
         try {
-            if (cpf.equals(aluno.getCpf())) {
-                Logger.getLogger("Aluno").info("Aluno editada com sucesso");
-                return new Aluno(aluno.getNome(), aluno.getSobrenome(), aluno.getTelefone(), aluno.getEndereco()
-                        , aluno.getCpf(), aluno.getEmail(), aluno.getResponsavel());
-            }
-            Logger.getLogger("Aluno").info("Aluno nao editada");
-            throw new IllegalArgumentException("Aluno nao editada");
+            Logger.getLogger("Aluno").info("Aluno editada com sucesso");
+            return new Aluno(aluno.getNome(), aluno.getSobrenome(), aluno.getTelefone(), aluno.getEndereco()
+                    , aluno.getCpf(), aluno.getEmail(), aluno.getResponsavel());
+
         } catch (Exception e) {
             Logger.getLogger("Aluno").info("Aluno nao editada");
             throw new IllegalArgumentException("Ops, algo deu errado");

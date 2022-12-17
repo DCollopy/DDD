@@ -8,6 +8,8 @@ public class Email {
 
     private String email;
 
+    public Email() {
+    }
     public Email(String email) {
         if (email == null || email.isEmpty()) {
             Logger.getLogger("Email").info("Email não pode ser nulo ou vazio");

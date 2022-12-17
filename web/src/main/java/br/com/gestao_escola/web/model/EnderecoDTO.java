@@ -1,9 +1,10 @@
 package br.com.gestao_escola.web.model;
 
-import br.com.gestao_escola.dominio.entidade.objetos.Endereco;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder
 public class EnderecoDTO {
 
     private String rua;
@@ -14,14 +15,5 @@ public class EnderecoDTO {
     private CepDTO cep;
 
     public EnderecoDTO() {
-    }
-
-    public Endereco converteDtoParaEndereco() {
-        return new Endereco(this.getRua()
-                , this.getNumero()
-                , this.getBairro()
-                , this.getCidade()
-                , this.getEstado()
-                , this.getCep().converteDtoParaCep());
     }
 }

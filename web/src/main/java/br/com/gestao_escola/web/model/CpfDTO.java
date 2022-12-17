@@ -1,17 +1,16 @@
 package br.com.gestao_escola.web.model;
 
-import br.com.gestao_escola.dominio.entidade.objetos.Cpf;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CpfDTO {
 
     private String cpf;
 
     public CpfDTO() {
-    }
-
-    public Cpf converteDtoParaCpf() {
-        return new Cpf(this.getCpf());
     }
 }

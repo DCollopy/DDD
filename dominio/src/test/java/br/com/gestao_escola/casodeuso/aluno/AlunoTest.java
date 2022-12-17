@@ -98,17 +98,11 @@ class AlunoTest {
 
     @Test
     void naoEditaAluno() {
-        assertThrows(IllegalArgumentException.class, () -> alunoValidaTest.editAluno(aluno, null));
-
-        assertThrows(IllegalArgumentException.class, () -> alunoValidaTest.editAluno(null, new Cpf("12345678910")));
-
-        assertThrows(IllegalArgumentException.class, () -> alunoValidaTest.editAluno(aluno, new Cpf("")));
-
-        assertThrows(IllegalArgumentException.class, () -> alunoValidaTest.editAluno(aluno, new Cpf("12345678922")));
+        assertThrows(IllegalArgumentException.class, () -> alunoValidaTest.editAluno(null));
     }
     @Test
     void editAluno() {
         Cpf cpf = new Cpf("12345678910");
-        assertNotNull(alunoValidaTest.editAluno(aluno, cpf));
+        assertNotNull(alunoValidaTest.editAluno(aluno));
     }
 }

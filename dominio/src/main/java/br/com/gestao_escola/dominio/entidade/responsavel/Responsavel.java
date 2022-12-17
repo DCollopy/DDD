@@ -15,7 +15,6 @@ public class Responsavel extends Pessoa {
     public Responsavel(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email) {
         super(nome, sobrenome, telefone, endereco, cpf, email);
     }
-
     @Override
     public String perfil() {
         return this.perfil;

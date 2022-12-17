@@ -7,13 +7,15 @@ import java.util.logging.Logger;
 @Data
 public class Telefone {
 
-    private String numero;
+    private String numero_telefone;
     private String ddd;
 
+    public Telefone() {
+    }
 
-    public Telefone(String ddd, String numero) {
+    public Telefone(String ddd, String numero_telefone) {
 
-        if (numero == null || numero.isEmpty()) {
+        if (numero_telefone == null || numero_telefone.isEmpty()) {
             Logger.getLogger("Telefone").info("Numero não pode ser nulo ou vazio");
             throw new IllegalArgumentException("Numero não pode ser nulo ou vazio");
         }
@@ -23,7 +25,7 @@ public class Telefone {
             throw new IllegalArgumentException("DDD não pode ser nulo ou vazio");
         }
 
-        if (!numero.matches("^(\\d{4}-?\\d{4})$")) {
+        if (!numero_telefone.matches("^(\\d{4}-?\\d{4})$")) {
             Logger.getLogger("Telefone").info("Numero invalido");
             throw new IllegalArgumentException("Numero invalido");
         }
@@ -32,7 +34,7 @@ public class Telefone {
             Logger.getLogger("Telefone").info("DDD invalido");
             throw new IllegalArgumentException("DDD invalido");
         }
-        this.numero = numero;
+        this.numero_telefone = numero_telefone;
         this.ddd = ddd;
     }
 

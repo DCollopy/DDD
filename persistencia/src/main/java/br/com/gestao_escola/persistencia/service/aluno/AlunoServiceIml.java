@@ -1,52 +1,68 @@
 package br.com.gestao_escola.persistencia.service.aluno;
 
-import br.com.gestao_escola.persistencia.converte.AlunoMapper;
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
+import br.com.gestao_escola.dominio.entidade.objetos.Cpf;
 import br.com.gestao_escola.dominio.entidade.servico.AlunoService;
+import br.com.gestao_escola.persistencia.converte.AlunoConverte;
+import br.com.gestao_escola.persistencia.converte.CpfConverte;
+import br.com.gestao_escola.persistencia.entidade.AlunoEntidade;
 import br.com.gestao_escola.persistencia.repositorio.AlunoRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Service
 public class AlunoServiceIml implements AlunoService {
     private final AlunoRepositorio alunoRepositorio;
     private final AlunoValidaAbs alunoValidaAbs = new AlunoValidaAbs();
-    private final AlunoMapper alunoMapper;
+    private final AlunoConverte alunoConverte;
 
-    public AlunoServiceIml(AlunoRepositorio alunoRepositorio, AlunoMapper alunoMapper) {
+    private final CpfConverte cpfConvertes;
+
+    public AlunoServiceIml(AlunoRepositorio alunoRepositorio, AlunoConverte alunoConverte, CpfConverte cpfConvertes) {
         this.alunoRepositorio = alunoRepositorio;
-        this.alunoMapper = alunoMapper;
+        this.alunoConverte = alunoConverte;
+        this.cpfConvertes = cpfConvertes;
     }
 
     @Override
     public void save(Aluno aluno) {
-
-
+        alunoValidaAbs.criaAluno(aluno);
+        alunoRepositorio.save(alunoConverte.converteAlunoToEntidade(aluno));
     }
 
     @Override
-    public Aluno findOne(String cpf) {
-        return null;
+    public Aluno findOne(Cpf cpf) {
+        AlunoEntidade encontreUmAluno = alunoRepositorio.findOnesByCpf(cpfConvertes.converteCpfToEntidade(cpf));
+        return alunoConverte.converteEntitidadeToAluno(encontreUmAluno);
     }
 
     @Override
-    public Boolean exist(String cpf) {
-        return null;
+    public Boolean exist(Aluno aluno) {
+        return alunoRepositorio.existsById(cpfConvertes.converteCpfToEntidade(aluno.getCpf()));
     }
 
     @Override
-    public Aluno edit(Aluno aluno, String cpf) {
-        return null;
+    public void edit(Aluno aluno) {
+        Aluno editAluno = alunoValidaAbs.editAluno(aluno);
+        alunoRepositorio.save(alunoConverte.converteAlunoToEntidade(editAluno));
     }
 
     @Override
-    public void delete(String cpf) {
-
+    public void delete(Cpf cpf) {
+        AlunoEntidade encontreUmAluno = alunoRepositorio.findOnesByCpf(cpfConvertes.converteCpfToEntidade(cpf));
+        if (encontreUmAluno != null) {
+            alunoRepositorio.delete(encontreUmAluno);
+            Logger.getLogger("Aluno").info("Aluno deletado com sucesso" + encontreUmAluno.getNome());
+        } else {
+            Logger.getLogger("Aluno").info("Aluno não existe");
+        }
     }
 
     @Override
     public List<Aluno> listAll() {
-        return null;
+        return alunoRepositorio.findAll().stream().map(alunoConverte::converteEntitidadeToAluno).collect(Collectors.toList());
     }
 }

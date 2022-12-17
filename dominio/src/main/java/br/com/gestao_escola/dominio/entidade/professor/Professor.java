@@ -9,13 +9,9 @@ import java.time.Year;
 
 @Data
 public class Professor  extends Pessoa {
-
     private final String perfil = "PROFESSOR";
-
-    private final String matricula = "PROF" + Year.now().getValue() + this.getCpf().getNumero();
-
+    private final String matricula = "PROF" + Year.now().getValue() + this.getCpf().getCpf();
     private Disciplina disciplina;
-
 
     public Professor(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email) {
         super(nome, sobrenome, telefone, endereco, cpf, email);
@@ -30,7 +26,6 @@ public class Professor  extends Pessoa {
         this.disciplina = disciplina;
     }
 
-
     public Professor(){
         super();
     }
@@ -44,6 +39,5 @@ public class Professor  extends Pessoa {
     public String pegaMatricula() {
         return this.matricula;
     }
-
 
 }

@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@SpringBootApplication
 @ComponentScan(basePackages = "br.com.gestao_escola.*")
 @EntityScan(basePackages = "br.com.gestao_escola.*")
 @EnableJpaRepositories(basePackages = "br.com.gestao_escola.*")

@@ -20,7 +20,7 @@ public abstract class NotaValida {
     public List<Nota> mediaNota(List<Nota> nota, String cpf, float id, String professor) {
         if (professor.equals("PROFESSOR")) {
             nota.stream()
-                    .filter(n -> n.getAluno().getCpf().getNumero().contains(cpf) && n.getId() == id)
+                    .filter(n -> n.getAluno().getCpf().getCpf().contains(cpf) && n.getId() == id)
                     .mapToDouble(Nota::getNota).average()
                     .ifPresent(n -> nota.get(0).setMedia(n));
         } else {

@@ -1,13 +1,14 @@
 package br.com.gestao_escola.web.model;
 
-import br.com.gestao_escola.dominio.entidade.objetos.Cep;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CepDTO {
-    private String cep;
 
-    public Cep converteDtoParaCep() {
-        return new Cep(this.getCep());
+    private String numero_cep;
+
+    public CepDTO() {
     }
 }

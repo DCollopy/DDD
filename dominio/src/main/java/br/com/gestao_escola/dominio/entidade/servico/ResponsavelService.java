@@ -15,7 +15,7 @@ public interface ResponsavelService {
 
     List<Responsavel> listAll();
 
-    Responsavel edit(Responsavel responsavel, Cpf cpf);
+    Responsavel edit(Responsavel responsavel);
 
-
+    void delete(Cpf cpf);
 }
