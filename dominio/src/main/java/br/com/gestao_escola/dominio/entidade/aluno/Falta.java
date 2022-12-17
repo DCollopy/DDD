@@ -10,12 +10,9 @@ import java.util.logging.Logger;
 public class Falta {
 
     private float id;
-    //1:1
     private Aluno aluno;
-    //1:1
     private Aula aula;
     private int numeroFaltas;
-
     private int numeroPresenca;
     private LocalDate falta_data;
     private LocalDate presenca;
@@ -58,4 +55,6 @@ public class Falta {
         this.aula = aula;
         this.presenca = presenca;
     }
+
+    public Falta(){}
 }

@@ -64,9 +64,9 @@ public abstract class FaltaValida {
         }
     }
 
-    public boolean alunoReprovaFalta(Falta falta, String cpf) {
+    public boolean alunoReprovaFalta(Falta falta) {
         try {
-            if (falta.getAluno().getCpf().getCpf().contains(cpf) && falta.getAula().getAulaAtiva()) {
+            if (falta.getAula().getAulaAtiva()) {
                 int total = (falta.getTotalFaltas() + falta.getTotalPreenca());
                 double aulas = total * 0.8;
                 Logger.getLogger("Falta").info("Falta do aluno calculada com sucesso");

@@ -158,7 +158,7 @@ class FaltaTeste {
     @Test
     void alunoReprovaFalta() {
         faltaValida.calculaFalta(faltaListCalculo,  "PROFESSOR", "12345678910");
-        assertTrue(faltaValida.alunoReprovaFalta(faltaListCalculo.stream().iterator().next(),  "12345678910"));
+        assertTrue(faltaValida.alunoReprovaFalta(faltaListCalculo.stream().iterator().next()));
 
     }
 
