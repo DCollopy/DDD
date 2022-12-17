@@ -7,7 +7,6 @@ import lombok.Data;
 import java.time.Year;
 @Data
 public class Admin extends Pessoa {
-
     private final String matricula = "ADMIN" + Year.now().getValue() + this.getCpf().getCpf();
     private final String perfil = "ADMIN";
 
@@ -15,6 +14,9 @@ public class Admin extends Pessoa {
         super(nome, sobrenome, cpf);
     }
 
+    public Admin(){
+        super();
+    }
 
     @Override
     public String perfil() {

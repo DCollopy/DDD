@@ -15,7 +15,6 @@ import java.util.List;
 public class AlunoController {
     private final AlunoService alunoService;
     private final AlunoMapper alunoMapper;
-
     private final CpfMapper cpfMapper;
     public AlunoController(AlunoService alunoService, AlunoMapper alunoMapper, CpfMapper cpfMapper) {
         this.alunoService = alunoService;
