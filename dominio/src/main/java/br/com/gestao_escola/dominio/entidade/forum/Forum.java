@@ -36,4 +36,6 @@ public class Forum<T>{
         this.mensagem = mensagem;
         this.identidade = identidade;
     }
+
+    public Forum(){}
 }

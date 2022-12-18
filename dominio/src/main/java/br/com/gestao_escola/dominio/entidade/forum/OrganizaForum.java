@@ -22,4 +22,6 @@ public class OrganizaForum {
         this.titulo = titulo;
         this.forum = forum;
     }
+
+    public OrganizaForum(){}
 }
