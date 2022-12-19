@@ -30,12 +30,12 @@ public class ProfessorController {
         professorService.findOne(cpfMapper.converteDTOToCpf(cpf));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/criaProfessor")
     public void createProfessor(@PathVariable ProfessorDTO professorDTO) {
         professorService.save(professorMapper.converteDTOToProfessor(professorDTO));
     }
 
-    @PutMapping("/edit/{cpf}")
+    @PutMapping("/edita/{cpf}")
     public void editProfessor(@PathVariable ProfessorDTO professorDTO) {
         professorService.edit(professorMapper.converteDTOToProfessor(professorDTO));
     }

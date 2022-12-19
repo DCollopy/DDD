@@ -33,13 +33,13 @@ public class AdminController {
         return adminService.buscaPorCpf(cpfMapper.converteDTOToCpf(cpf));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/criaAdmin")
     public String createAdmin(@RequestBody Admin admin) {
         adminService.salva(admin);
         return "redirect:/admin";
     }
 
-    @PutMapping("/edit/{cpf}")
+    @PutMapping("/edita/{cpf}")
     public String editAdmin(@RequestBody Admin admin) {
         adminService.edita(admin);
         return "redirect:/admin";

@@ -32,13 +32,13 @@ public class AlunoController {
         return alunoService.findOne(cpfMapper.converteDTOToCpf(cpf));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/criaAluno")
     public String createAluno(@RequestBody AlunoDTO alunoDTO) {
         alunoService.save(alunoMapper.converteDTOToAluno(alunoDTO));
         return "redirect:/aluno";
     }
 
-    @PutMapping("/edit/{cpf}")
+    @PutMapping("/edita/{cpf}")
     public String editAluno(@RequestBody AlunoDTO alunoDTO) {
         alunoService.edit(alunoMapper.converteDTOToAluno(alunoDTO));
         return "redirect:/aluno";

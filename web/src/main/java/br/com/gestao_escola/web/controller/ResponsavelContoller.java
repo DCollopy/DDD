@@ -33,13 +33,13 @@ public class ResponsavelContoller {
         return responsavelService.findOne(cpfMapper.converteDTOToCpf(cpf));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/criaResponsavel")
     public String createResponsavel(@RequestBody ResponsavelDTO responsavelDTO) {
         responsavelService.save(responsavelMapper.converteDTOToResponsavel(responsavelDTO));
         return "redirect:/responsavel";
     }
 
-    @PutMapping("/edit/{cpf}")
+    @PutMapping("/edita/{cpf}")
     public String editResponsavel(@RequestBody ResponsavelDTO responsavelDTO) {
         responsavelService.edit(responsavelMapper.converteDTOToResponsavel(responsavelDTO));
         return "redirect:/responsavel";

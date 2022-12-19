@@ -26,12 +26,12 @@ public class AulaController {
         aulaService.findOne(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/criaAula")
     public void createAula(AulaDTO aulaDTO) {
         aulaService.save(aulaMapper.converteDTOToAula(aulaDTO));
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/edita/{id}")
     public void editAula(AulaDTO aulaDTO) {
         aulaService.edit(aulaMapper.converteDTOToAula(aulaDTO));
     }

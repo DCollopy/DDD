@@ -39,19 +39,19 @@ public class FaltaController {
         return faltaService.calculaFalta(professor, cpf);
     }
 
-    @PostMapping("/cria/falta")
+    @PostMapping("/criaFalta")
     public String criaFalta(@RequestBody FaltaDTO falta, @RequestBody String professor) {
         faltaService.criaFalta(faltaMapper.converteDTOToAluno(falta), professor);
         return "redirect:/falta";
     }
 
-    @PostMapping("/cria/presenca")
+    @PostMapping("/criaPresenca")
     public String criaPresenca(@RequestBody FaltaDTO falta, @RequestBody String professor) {
         faltaService.criaPresenca(faltaMapper.converteDTOToAluno(falta), professor);
         return "redirect:/falta";
     }
 
-    @PutMapping("/edit/{id}")
+    @PutMapping("/edita/{id}")
     public String editFalta(@RequestBody String professor, @RequestBody String cpf, @RequestBody LocalDate acheData) {
         faltaService.editaFalta(professor, cpf, acheData);
         return "redirect:/falta";
