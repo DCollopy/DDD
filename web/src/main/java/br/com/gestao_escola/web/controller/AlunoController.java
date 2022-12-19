@@ -42,7 +42,7 @@ public class AlunoController {
 
     @PostMapping("/criaAluno")
     public String createAluno(@RequestBody AlunoDTO alunoDTO) {
-        Responsavel responsavel = responsavelService.findOne(cpfMapper.converteDTOToCpf(alunoDTO.getResponsavel().getCpf()));
+        Responsavel responsavel = responsavelService.findOne(alunoDTO.getResponsavel().getCpf().getCpf());
         alunoDTO.setResponsavel(responsavelMapper.converteResponsavelToDTO(responsavel));
         alunoService.save(alunoMapper.converteDTOToAluno(alunoDTO));
 
