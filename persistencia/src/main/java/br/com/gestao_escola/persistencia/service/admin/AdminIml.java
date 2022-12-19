@@ -31,13 +31,13 @@ public class AdminIml implements AdminService {
     }
 
     @Override
-    public Admin buscaPorCpf(Cpf cpf) {
+    public Admin buscaPorCpf(String cpf) {
         return adminConverte
-                .converteEntitidadeToAdmin(adminRepositorio.findOnesByCpf(cpfConverte.converteCpfToEntidade(cpf)));
+                .converteEntitidadeToAdmin(adminRepositorio.findOnesByCpf(cpfConverte.converteCpfToEntidade(new Cpf(cpf))));
     }
 
     @Override
-    public void deleta(Cpf cpf) {
+    public void deleta(String cpf) {
         try {
             Admin admin = buscaPorCpf(cpf);
             if (admin != null) {
@@ -53,7 +53,7 @@ public class AdminIml implements AdminService {
 
     @Override
     public void edita(Admin admin) {
-        if (buscaPorCpf(admin.getCpf()) != null) {
+        if (buscaPorCpf(admin.getCpf().getCpf()) != null) {
             adminValidaAbs.editAdmin(admin);
             adminRepositorio.save(adminConverte.converteAdminToEntidade(admin));
             Logger.getLogger("Admin").info("Admin editado com sucesso" + admin.getNome());

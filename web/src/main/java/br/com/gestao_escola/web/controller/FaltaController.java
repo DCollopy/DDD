@@ -30,7 +30,7 @@ public class FaltaController {
     }
 
     @GetMapping({ "/aluno/reprovado" })
-    public boolean alunoReprovado(@PathVariable FaltaDTO falta) {
+    public boolean alunoReprovado(@RequestBody FaltaDTO falta) {
         return faltaService.alunoReprovaFalta(faltaMapper.converteDTOToAluno(falta));
     }
 
@@ -52,7 +52,7 @@ public class FaltaController {
     }
 
     @PutMapping("/edita/{id}")
-    public String editFalta(@RequestBody String professor, @RequestBody String cpf, @RequestBody LocalDate acheData) {
+    public String editFalta(@PathVariable String professor,@PathVariable String cpf,@PathVariable LocalDate acheData) {
         faltaService.editaFalta(professor, cpf, acheData);
         return "redirect:/falta";
     }

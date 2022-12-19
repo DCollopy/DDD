@@ -11,12 +11,11 @@ import java.util.logging.Logger;
 
 @Data
 public class Aluno extends Pessoa {
-    private final String matricula = "ALU" + Year.now().getValue() + this.getCpf().getCpf();
+    private final String matricula = "ALU" + Year.now().getValue() +(int) (Math.random() * 1000);
     private final String perfil = "ALUNO";
 
     private Set<Falta> falta;
     private Set<Turma> turma;
-
     private Responsavel responsavel;
 
     public Aluno(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email, Responsavel responsavel) {
@@ -37,14 +36,13 @@ public class Aluno extends Pessoa {
         this.responsavel = responsavel;
     }
 
-    public Aluno() {
+    public Aluno()  {
         super();
     }
 
     public Aluno(Set<Turma> turma) {
         this.turma = turma;
     }
-
 
     @Override
     public String perfil() {
@@ -56,4 +54,7 @@ public class Aluno extends Pessoa {
         return this.matricula;
     }
 
+    public Cpf getCpf() {
+        return super.getCpf();
+    }
 }

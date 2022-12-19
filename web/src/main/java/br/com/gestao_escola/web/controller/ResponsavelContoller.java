@@ -15,12 +15,10 @@ import java.util.List;
 public class ResponsavelContoller {
     private final ResponsavelService responsavelService;
     private final ResponsavelMapper responsavelMapper;
-    private final CpfMapper cpfMapper;
 
-    public ResponsavelContoller(ResponsavelService responsavelService, ResponsavelMapper responsavelMapper, CpfMapper cpfMapper) {
+    public ResponsavelContoller(ResponsavelService responsavelService, ResponsavelMapper responsavelMapper) {
         this.responsavelService = responsavelService;
         this.responsavelMapper = responsavelMapper;
-        this.cpfMapper = cpfMapper;
     }
 
     @GetMapping
@@ -29,8 +27,8 @@ public class ResponsavelContoller {
     }
 
     @GetMapping({ "/{cpf}" })
-    public Responsavel index(@PathVariable CpfDTO cpf) {
-        return responsavelService.findOne(cpfMapper.converteDTOToCpf(cpf));
+    public Responsavel index(@PathVariable String cpf) {
+        return responsavelService.findOne(cpf);
     }
 
     @PostMapping("/criaResponsavel")

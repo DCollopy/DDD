@@ -9,11 +9,11 @@ public interface AdminService {
 
     void salva(Admin admin);
 
-    Admin buscaPorCpf(Cpf cpf);
+    Admin buscaPorCpf(String cpf);
 
     void edita(Admin admin);
 
     List<Admin> listAll();
 
-    void deleta(Cpf cpf);
+    void deleta(String cpf);
 }

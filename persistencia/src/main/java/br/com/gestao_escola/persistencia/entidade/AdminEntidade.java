@@ -11,6 +11,7 @@ import javax.persistence.Table;
 public class AdminEntidade extends PessoaEntidade {
 
     private  String matricula;
+
     private  String perfil;
 
     public AdminEntidade(){}

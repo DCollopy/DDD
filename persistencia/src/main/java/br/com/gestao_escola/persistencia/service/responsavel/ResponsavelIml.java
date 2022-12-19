@@ -34,18 +34,28 @@ public class ResponsavelIml implements ResponsavelService {
 
     @Override
     public Responsavel edit(Responsavel responsavel) {
-        return null;
+        responsavelAbs.editaResponsavel(responsavel);
+        return responsavelConverte
+                .converteEntidadeToResponsavel(responsavelRepositorio
+                        .save(responsavelConverte
+                                .converteResponsavelToEntidade(responsavel)));
     }
 
     @Override
-    public Responsavel findOne(Cpf cpf) {
-        ResponsavelEntidade responsavelExiste = responsavelRepositorio.findOnesByCpf(cpfConverte.converteCpfToEntidade(cpf));
-        return responsavelConverte.converteEntidadeToResponsavel(responsavelExiste);
+    public Responsavel findOne(String cpf) {
+        ResponsavelEntidade responsavelExiste = responsavelRepositorio
+                .findOnesByCpf(cpfConverte.converteCpfToEntidade(new Cpf(cpf)));
+        if (responsavelExiste != null) {
+            return responsavelConverte.converteEntidadeToResponsavel(responsavelExiste);
+        } else {
+            Logger.getLogger("Responsavel").info("Responsavel não encontrado");
+            throw new RuntimeException("Responsavel não encontrado");
+        }
     }
 
     @Override
-    public Boolean exist(Cpf cpf) {
-        return responsavelRepositorio.existsById(cpfConverte.converteCpfToEntidade(cpf));
+    public Boolean exist(String cpf) {
+        return responsavelRepositorio.existsById(cpfConverte.converteCpfToEntidade(new Cpf(cpf)));
     }
 
     @Override
@@ -54,9 +64,9 @@ public class ResponsavelIml implements ResponsavelService {
     }
 
     @Override
-    public void delete(Cpf cpf) {
+    public void delete(String cpf) {
         Responsavel responsavelExiste = findOne(cpf);
-        if(responsavelExiste != null){
+        if (responsavelExiste != null) {
             Logger.getLogger("Responsavel").info("Responsavel deletado com sucesso" + responsavelExiste.getNome());
             responsavelRepositorio.delete(responsavelConverte.converteResponsavelToEntidade(responsavelExiste));
         } else {

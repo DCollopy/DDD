@@ -10,7 +10,7 @@ import java.time.Year;
 @Data
 public class Professor  extends Pessoa {
     private final String perfil = "PROFESSOR";
-    private final String matricula = "PROF" + Year.now().getValue() + this.getCpf().getCpf();
+    private final String matricula = "PROF" + Year.now().getValue() + (int) (Math.random() * 1000);
     private Disciplina disciplina;
 
     public Professor(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email) {

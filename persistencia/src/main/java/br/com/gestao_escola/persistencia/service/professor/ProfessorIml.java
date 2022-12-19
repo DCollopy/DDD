@@ -30,19 +30,20 @@ public class ProfessorIml implements ProfessorService {
     }
 
     @Override
-    public Professor findOne(Cpf cpf) {
+    public Professor findOne(String cpf) {
+        Cpf cpf1 = new Cpf(cpf);
         return professorConverte
-                .converteEntitidadeToProfessor(professorRepositorio.findById(cpfConverte.converteCpfToEntidade(cpf)).get());
+                .converteEntitidadeToProfessor(professorRepositorio.findById(cpfConverte.converteCpfToEntidade(cpf1)).get());
     }
 
     @Override
-    public Boolean exist(Cpf cpf) {
-        return professorRepositorio.existsById(cpfConverte.converteCpfToEntidade(cpf));
+    public Boolean exist(String cpf) {
+        return professorRepositorio.existsById(cpfConverte.converteCpfToEntidade(new Cpf(cpf)));
     }
 
     @Override
     public Professor edit(Professor professor) {
-        Professor professorEdit = findOne(professor.getCpf());
+        Professor professorEdit = findOne(professor.getCpf().getCpf());
         Professor professorParaEdicao = professorValidaAbs.editaProfessor(professorEdit);
         if (professorParaEdicao != null) {
             professorRepositorio.save(professorConverte.converteProfessorToEntidade(professorParaEdicao));
@@ -51,10 +52,10 @@ public class ProfessorIml implements ProfessorService {
     }
 
     @Override
-    public void delete(Cpf cpf) {
+    public void delete(String cpf) {
         Professor professorExiste = findOne(cpf);
         if (professorExiste != null) {
-            professorRepositorio.deleteById(cpfConverte.converteCpfToEntidade(cpf));
+            professorRepositorio.deleteById(cpfConverte.converteCpfToEntidade(new Cpf(cpf)));
         }
     }
 

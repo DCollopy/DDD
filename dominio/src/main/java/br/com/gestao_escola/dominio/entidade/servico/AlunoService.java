@@ -9,7 +9,7 @@ public interface AlunoService {
 
     void save(Aluno aluno);
 
-    Aluno findOne(Cpf cpf);
+    Aluno findOne(String cpf);
 
     Boolean exist(Aluno aluno);
 
@@ -17,5 +17,5 @@ public interface AlunoService {
 
     List<Aluno> listAll();
 
-    void delete(Cpf cpf);
+    void delete(String cpf);
 }

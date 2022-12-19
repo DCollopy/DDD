@@ -26,22 +26,22 @@ public class ProfessorController {
     }
 
     @GetMapping({ "/{cpf}" })
-    public void index(@PathVariable CpfDTO cpf) {
-        professorService.findOne(cpfMapper.converteDTOToCpf(cpf));
+    public void index(@PathVariable String cpf) {
+        professorService.findOne(cpf);
     }
 
     @PostMapping("/criaProfessor")
-    public void createProfessor(@PathVariable ProfessorDTO professorDTO) {
+    public void createProfessor(@RequestBody ProfessorDTO professorDTO) {
         professorService.save(professorMapper.converteDTOToProfessor(professorDTO));
     }
 
     @PutMapping("/edita/{cpf}")
-    public void editProfessor(@PathVariable ProfessorDTO professorDTO) {
+    public void editProfessor(@RequestBody ProfessorDTO professorDTO) {
         professorService.edit(professorMapper.converteDTOToProfessor(professorDTO));
     }
 
     @DeleteMapping("/delete/{cpf}")
-    public void deleteProfessor(@PathVariable CpfDTO cpf) {
-        professorService.delete(cpfMapper.converteDTOToCpf(cpf));
+    public void deleteProfessor(@PathVariable String cpf) {
+        professorService.delete(cpf);
     }
 }

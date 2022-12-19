@@ -25,17 +25,6 @@ public class AlunoEntidade extends PessoaEntidade implements Serializable {
     private ResponsavelEntidade responsavel;
 
     public AlunoEntidade() {
-    }
-
-    public AlunoEntidade(String nome, String sobrenome, TelefoneEntidade telefone, EnderecoEntidade endereco
-            , CpfEntidade cpf, EmailEntidade email, ResponsavelEntidade responsavel) {
-        super(nome, sobrenome, telefone, endereco, cpf, email);
-        this.responsavel = responsavel;
-    }
-
-    public AlunoEntidade(String nome, String sobrenome
-            , CpfEntidade cpf,ResponsavelEntidade responsavel) {
-        super(nome, sobrenome, cpf);
-        this.responsavel = responsavel;
+        super();
     }
 }

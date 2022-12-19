@@ -30,13 +30,13 @@ public class TurmaController {
     }
 
     @PostMapping("/criaTurma")
-    public String createTurma(@RequestBody TurmaDTO turma, @RequestBody String identidade) {
+    public String createTurma(@RequestBody TurmaDTO turma, @PathVariable String identidade) {
         turmaService.save(turmaMapper.converteDTOToTurma(turma), identidade);
         return "redirect:/turma";
     }
 
     @PutMapping("/edita/{id}")
-    public String editTurma(@RequestBody TurmaDTO turma, @RequestBody String identidade) {
+    public String editTurma(@RequestBody TurmaDTO turma, @PathVariable String identidade) {
         turmaService.edit(turmaMapper.converteDTOToTurma(turma), identidade);
         return "redirect:/turma";
     }

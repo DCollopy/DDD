@@ -9,13 +9,13 @@ public interface ResponsavelService {
 
     void save(Responsavel responsavel);
 
-    Responsavel findOne(Cpf cpf);
+    Responsavel findOne(String cpf);
 
-    Boolean exist(Cpf cpf);
+    Boolean exist(String cpf);
 
     List<Responsavel> listAll();
 
     Responsavel edit(Responsavel responsavel);
 
-    void delete(Cpf cpf);
+    void delete(String cpf);
 }

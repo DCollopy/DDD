@@ -15,12 +15,9 @@ public class AdminController {
     private final AdminService adminService;
     private final AdminMapper adminMapper;
 
-    private final CpfMapper cpfMapper;
-
-    public AdminController(AdminService adminService, AdminMapper adminMapper, CpfMapper cpfMapper) {
+    public AdminController(AdminService adminService, AdminMapper adminMapper) {
         this.adminService = adminService;
         this.adminMapper = adminMapper;
-        this.cpfMapper = cpfMapper;
     }
 
     @GetMapping
@@ -29,8 +26,8 @@ public class AdminController {
     }
 
     @GetMapping({ "/{cpf}" })
-    public Admin admin(@PathVariable CpfDTO cpf) {
-        return adminService.buscaPorCpf(cpfMapper.converteDTOToCpf(cpf));
+    public Admin admin(@PathVariable String cpf) {
+        return adminService.buscaPorCpf(cpf);
     }
 
     @PostMapping("/criaAdmin")
@@ -46,8 +43,8 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{cpf}")
-    public String deleteAdmin(@PathVariable CpfDTO cpf) {
-        adminService.deleta(cpfMapper.converteDTOToCpf(cpf));
+    public String deleteAdmin(@PathVariable String cpf) {
+        adminService.deleta(cpf);
         return "redirect:/admin";
     }
 }

@@ -35,7 +35,7 @@ public class ForumController {
     }
 
     @PostMapping("/criarForum")
-    public void criarForum(@PathVariable OrganizaForumDTO organizaForumDTO) {
+    public void criarForum(@RequestBody OrganizaForumDTO organizaForumDTO) {
         organizaForumService.save(organizaForumMapper.converteDTOToOrganizaForum(organizaForumDTO));
         forumService.save(forumMapper.converteDTOToForum(organizaForumDTO.getForum()));
     }

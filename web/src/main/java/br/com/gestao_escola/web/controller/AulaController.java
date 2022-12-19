@@ -27,12 +27,12 @@ public class AulaController {
     }
 
     @PostMapping("/criaAula")
-    public void createAula(AulaDTO aulaDTO) {
+    public void createAula(@RequestBody AulaDTO aulaDTO) {
         aulaService.save(aulaMapper.converteDTOToAula(aulaDTO));
     }
 
     @PutMapping("/edita/{id}")
-    public void editAula(AulaDTO aulaDTO) {
+    public void editAula(@RequestBody AulaDTO aulaDTO) {
         aulaService.edit(aulaMapper.converteDTOToAula(aulaDTO));
     }
 

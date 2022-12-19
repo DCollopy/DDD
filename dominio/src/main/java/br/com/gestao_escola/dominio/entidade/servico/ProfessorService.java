@@ -9,13 +9,13 @@ public interface ProfessorService {
 
     void save(Professor professor);
 
-    Professor findOne(Cpf cpf);
+    Professor findOne(String cpf);
 
-    Boolean exist(Cpf cpf);
+    Boolean exist(String cpf);
 
     Professor edit(Professor professor);
 
-    void delete(Cpf cpf);
+    void delete(String cpf);
 
     List<Professor> listAll();
 }
