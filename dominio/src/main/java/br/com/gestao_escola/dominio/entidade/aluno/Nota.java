@@ -31,4 +31,7 @@ public class Nota {
         this.aula = aula;
         this.aluno = aluno;
     }
+
+    public Nota() {
+    }
 }

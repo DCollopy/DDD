@@ -3,16 +3,17 @@ package br.com.gestao_escola.web.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import java.time.LocalDate;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ForumDTO<T> {
+public class NotaDTO {
 
     private float id;
 
-    private String mensagem;
+    private double nota;
 
-    private  T identidade;
+    private AulaDTO aula;
 
-    private LocalDate data;
+    private AlunoDTO aluno;
+
+    private double media;
 }

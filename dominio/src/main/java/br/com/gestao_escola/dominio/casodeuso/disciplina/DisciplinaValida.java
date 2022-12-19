@@ -15,9 +15,9 @@ public abstract class DisciplinaValida {
         }
     }
 
-    public Disciplina editaDisciplina(Disciplina disciplina, long id){
+    public Disciplina editaDisciplina(Disciplina disciplina){
         try {
-            if (disciplina.getId() == id) {
+            if (disciplina != null) {
                 Logger.getLogger("Disciplina").info("Disciplina editada com sucesso");
                 return new Disciplina(disciplina.getAula(), disciplina.getTurma(), disciplina.getProfessor());
             } else {
@@ -29,9 +29,9 @@ public abstract class DisciplinaValida {
         }
     }
 
-    public void deletaDisciplina(Disciplina disciplina, long id){
+    public void deletaDisciplina(Disciplina disciplina){
         try {
-            if (disciplina.getId() == id) {
+            if (disciplina != null) {
                 Logger.getLogger("Disciplina").info("Disciplina deletada");
             } else {
                 Logger.getLogger("Disciplina").info("Disciplina nao encotrada para deletar");

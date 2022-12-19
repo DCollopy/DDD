@@ -69,13 +69,11 @@ class DisciplinaTeste {
 
     @Test
     void naoEditaDisciplina() {
-        assertThrows(IllegalArgumentException.class, () -> disciplinaValidaTeste.editaDisciplina(disciplina, 2));
-
-        assertThrows(IllegalArgumentException.class, () -> disciplinaValidaTeste.editaDisciplina(null, 1));
+        assertThrows(IllegalArgumentException.class, () -> disciplinaValidaTeste.editaDisciplina(null));
     }
 
     @Test
     void editaDisciplina() {
-        assertNotNull(disciplinaValidaTeste.editaDisciplina(disciplinaGetId, 1));
+        assertNotNull(disciplinaValidaTeste.editaDisciplina(disciplinaGetId));
     }
 }
