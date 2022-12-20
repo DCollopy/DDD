@@ -33,7 +33,7 @@ public class ProfessorIml implements ProfessorService {
     public Professor findOne(String cpf) {
         Cpf cpf1 = new Cpf(cpf);
         return professorConverte
-                .converteEntitidadeToProfessor(professorRepositorio.findById(cpfConverte.converteCpfToEntidade(cpf1)).get());
+                .converteEntitidadeToProfessor(professorRepositorio.findOnesByCpf(cpfConverte.converteCpfToEntidade(cpf1)));
     }
 
     @Override
