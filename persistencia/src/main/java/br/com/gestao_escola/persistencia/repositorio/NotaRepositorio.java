@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface NotaRepositorio extends JpaRepository<NotaEntidade, Float> {
+public interface NotaRepositorio extends JpaRepository<NotaEntidade, Integer> {
 }

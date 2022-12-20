@@ -14,7 +14,7 @@ public class FaltaEntidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private int id;
 
     @ManyToMany
     private Set<AlunoEntidade> aluno;

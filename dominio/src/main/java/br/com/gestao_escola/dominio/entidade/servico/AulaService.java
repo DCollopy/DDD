@@ -6,7 +6,7 @@ import java.util.List;
 public interface AulaService {
     void save(Aula aula);
     void edit(Aula aula);
-    Aula findOne(float id);
+    Aula findOne(int id);
     List<Aula> listAll();
-    void delete(float id);
+    void delete(int id);
 }

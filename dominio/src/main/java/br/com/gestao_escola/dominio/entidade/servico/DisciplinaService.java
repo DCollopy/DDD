@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface DisciplinaService {
     void save(Disciplina disciplina);
-    Disciplina findOne(float id);
-    Boolean exist(float id);
+    Disciplina findOne(int id);
+    Boolean exist(int id);
     List<Disciplina> listAll();
     Disciplina edit(Disciplina disciplina);
-    void delete(float id);
+    void delete(int id);
 }

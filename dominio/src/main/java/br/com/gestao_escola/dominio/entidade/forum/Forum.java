@@ -9,7 +9,7 @@ import java.util.stream.Collector;
 @Data
 public class Forum<T>{
 
-    private float id;
+    private int id;
 
     private String mensagem;
 

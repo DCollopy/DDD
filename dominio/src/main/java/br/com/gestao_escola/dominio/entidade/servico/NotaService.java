@@ -8,7 +8,7 @@ public interface NotaService {
 
     void criaNota(Nota nota);
 
-    void mediaNota(String cpf, float id, String professor);
+    void mediaNota(String cpf, int id, String professor);
 
-    double buscaMedia(float id,String cpf);
+    double buscaMedia(int id,String cpf);
 }

@@ -12,9 +12,9 @@ public interface TurmaService {
 
     List<Turma> findAll();
 
-    Turma findById(float id);
+    Turma findById(int id);
 
-    Boolean existsById(float id);
+    Boolean existsById(int id);
 
     void delete(Turma turma);
 }

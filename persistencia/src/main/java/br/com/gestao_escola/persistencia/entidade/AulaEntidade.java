@@ -12,7 +12,7 @@ public class AulaEntidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private int id;
 
     private String nome;
 

@@ -25,7 +25,7 @@ public class FaltaController {
     }
 
     @GetMapping({ "/{id}" })
-    public Falta index(@PathVariable Long id) {
+    public Falta index(@PathVariable int id) {
         return faltaService.findOne(id);
     }
 
@@ -34,24 +34,24 @@ public class FaltaController {
         return faltaService.alunoReprovaFalta(faltaMapper.converteDTOToAluno(falta));
     }
 
-    @GetMapping({ "/aluno/calculoFaltas" })
+    @GetMapping({ "/aluno/calculoFaltas/{professor}/{cpf}" })
     public List<Falta> calculaFalta(@PathVariable String professor, @PathVariable String cpf) {
         return faltaService.calculaFalta(professor, cpf);
     }
 
-    @PostMapping("/criaFalta")
-    public String criaFalta(@RequestBody FaltaDTO falta, @RequestBody String professor) {
+    @PostMapping("/criaFalta/{professor}")
+    public String criaFalta(@RequestBody FaltaDTO falta, @PathVariable String professor) {
         faltaService.criaFalta(faltaMapper.converteDTOToAluno(falta), professor);
         return "redirect:/falta";
     }
 
-    @PostMapping("/criaPresenca")
-    public String criaPresenca(@RequestBody FaltaDTO falta, @RequestBody String professor) {
+    @PostMapping("/criaPresenca/{professor}")
+    public String criaPresenca(@RequestBody FaltaDTO falta, @PathVariable String professor) {
         faltaService.criaPresenca(faltaMapper.converteDTOToAluno(falta), professor);
         return "redirect:/falta";
     }
 
-    @PutMapping("/edita/{id}")
+    @PutMapping("/edita/{professor}/{cpf}/{acheData}")
     public String editFalta(@PathVariable String professor,@PathVariable String cpf,@PathVariable LocalDate acheData) {
         faltaService.editaFalta(professor, cpf, acheData);
         return "redirect:/falta";

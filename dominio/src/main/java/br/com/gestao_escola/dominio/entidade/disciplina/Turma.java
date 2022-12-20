@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class Turma {
 
-    private float id;
+    private int id;
 
     private String nome;
 

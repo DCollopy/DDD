@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class ForumEntidade  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private int id;
 
     private String mensagem;
 

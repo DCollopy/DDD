@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 @Data
 public class Disciplina {
 
-    private float id;
+    private int id;
 
     private Aula aula;
 
@@ -36,7 +36,7 @@ public class Disciplina {
         this.professor = professor;
     }
 
-    public Disciplina(float id, Aula aula, Turma turma, Professor professor) {
+    public Disciplina(int id, Aula aula, Turma turma, Professor professor) {
         if (aula == null) {
             throw new IllegalArgumentException("Aula invalida");
         }

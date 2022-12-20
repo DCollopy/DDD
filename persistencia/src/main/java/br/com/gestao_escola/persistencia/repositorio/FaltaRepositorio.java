@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FaltaRepositorio extends JpaRepository<FaltaEntidade, Float> {
+public interface FaltaRepositorio extends JpaRepository<FaltaEntidade, Integer> {
     @Query("SELECT u FROM FaltaEntidade u WHERE u.aluno = :aluno")
     FaltaEntidade findFaltaEntidadeByAluno(
             @Param("aluno") AlunoEntidade aluno);

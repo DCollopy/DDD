@@ -29,12 +29,12 @@ public class ForumIml implements ForumService {
     }
 
     @Override
-    public Forum findOne(float id) {
+    public Forum findOne(int id) {
         return forumConverte.converteEntidadeToForum(forumRepositorio.findById(id).get());
     }
 
     @Override
-    public Boolean exist(float id) {
+    public Boolean exist(int id) {
         return forumRepositorio.existsById(id);
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 public interface FaltaService {
     void criaFalta(Falta falta, String professor);
     void criaPresenca(Falta falta, String professor);
-    Falta findOne(float id);
+    Falta findOne(int id);
     boolean alunoReprovaFalta(Falta falta);
     List<Falta> calculaFalta(String professor, String cpf);
     void editaFalta(String professor, String cpf, LocalDate acheData);

@@ -25,24 +25,24 @@ public class TurmaController {
     }
 
     @GetMapping({ "/{id}}" })
-    public Turma index(@PathVariable float id)  {
+    public Turma index(@PathVariable int id)  {
         return turmaService.findById(id);
     }
 
-    @PostMapping("/criaTurma")
+    @PostMapping("/criaTurma/{identidade}")
     public String createTurma(@RequestBody TurmaDTO turma, @PathVariable String identidade) {
         turmaService.save(turmaMapper.converteDTOToTurma(turma), identidade);
         return "redirect:/turma";
     }
 
     @PutMapping("/edita/{id}")
-    public String editTurma(@RequestBody TurmaDTO turma, @PathVariable String identidade) {
-        turmaService.edit(turmaMapper.converteDTOToTurma(turma), identidade);
+    public String editTurma(@PathVariable int id, @PathVariable String identidade) {
+        turmaService.edit(turmaService.findById(id), identidade);
         return "redirect:/turma";
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteTurma(@PathVariable float id) {
+    public String deleteTurma(@PathVariable int id) {
         turmaService.delete(turmaService.findById(id));
         return "redirect:/turma";
     }

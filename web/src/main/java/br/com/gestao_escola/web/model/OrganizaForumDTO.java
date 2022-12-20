@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class OrganizaForumDTO {
-    private long id;
 
     private String titulo;
 

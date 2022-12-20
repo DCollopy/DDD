@@ -7,9 +7,9 @@ import java.util.List;
 public interface OrganizaForumService {
     void save(OrganizaForum organizaForum);
 
-    OrganizaForum findOne(float id);
+    OrganizaForum findOne(int id);
 
-    Boolean exist(float id);
+    Boolean exist(int id);
 
     List<OrganizaForum> listAll();
 }

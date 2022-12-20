@@ -8,8 +8,6 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ForumDTO<T> {
 
-    private float id;
-
     private String mensagem;
 
     private  T identidade;

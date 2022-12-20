@@ -21,6 +21,7 @@ public class AlunoEntidade extends PessoaEntidade implements Serializable {
 
     @ManyToMany
     private Set<TurmaEntidade> turma;
+
     @OneToOne
     private ResponsavelEntidade responsavel;
 

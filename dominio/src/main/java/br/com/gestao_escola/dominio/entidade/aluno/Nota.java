@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 @Data
 public class Nota {
 
-    private float id;
+    private int id;
     private double nota;
     private Aula aula;
     private Aluno aluno;

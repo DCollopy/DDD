@@ -35,7 +35,7 @@ public class FaltaIml implements FaltaService {
     }
 
     @Override
-    public Falta findOne(float id) {
+    public Falta findOne(int id) {
         return faltaConverte.converteEntitidadeToFalta(faltaRepositorio.findById(id).get());
     }
 

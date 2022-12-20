@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 @Data
 public class Falta {
 
-    private float id;
+    private int id;
     private Aluno aluno;
     private Aula aula;
     private int numeroFaltas;

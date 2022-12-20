@@ -1,11 +1,14 @@
 package br.com.gestao_escola.web.controller;
 
+import br.com.gestao_escola.dominio.entidade.professor.Professor;
 import br.com.gestao_escola.dominio.entidade.servico.ProfessorService;
 import br.com.gestao_escola.web.converte.CpfMapper;
 import br.com.gestao_escola.web.converte.ProfessorMapper;
 import br.com.gestao_escola.web.model.CpfDTO;
 import br.com.gestao_escola.web.model.ProfessorDTO;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/escola/professor")
@@ -21,8 +24,8 @@ public class ProfessorController {
     }
 
     @GetMapping
-    public void index() {
-        professorService.listAll();
+    public List<Professor> index() {
+        return professorService.listAll();
     }
 
     @GetMapping({ "/{cpf}" })

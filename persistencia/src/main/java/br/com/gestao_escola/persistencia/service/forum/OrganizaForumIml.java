@@ -26,12 +26,12 @@ public class OrganizaForumIml implements OrganizaForumService {
     }
 
     @Override
-    public OrganizaForum findOne(float id) {
+    public OrganizaForum findOne(int id) {
         return organizaForumConverte.converteEntidadeToOrganizaForum(organizaForumRepositorio.getOne(id));
     }
 
     @Override
-    public Boolean exist(float id) {
+    public Boolean exist(int id) {
         return organizaForumRepositorio.existsById(id);
     }
 

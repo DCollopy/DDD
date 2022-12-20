@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ForumRepositorio extends JpaRepository<ForumEntidade, Float> {
+public interface ForumRepositorio extends JpaRepository<ForumEntidade, Integer> {
 }

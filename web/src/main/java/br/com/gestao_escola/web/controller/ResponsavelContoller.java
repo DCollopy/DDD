@@ -38,8 +38,8 @@ public class ResponsavelContoller {
     }
 
     @PutMapping("/edita/{cpf}")
-    public String editResponsavel(@RequestBody ResponsavelDTO responsavelDTO) {
-        responsavelService.edit(responsavelMapper.converteDTOToResponsavel(responsavelDTO));
+    public String editResponsavel(@PathVariable String cpf) {
+        responsavelService.edit(responsavelService.findOne(cpf));
         return "redirect:/responsavel";
     }
 }

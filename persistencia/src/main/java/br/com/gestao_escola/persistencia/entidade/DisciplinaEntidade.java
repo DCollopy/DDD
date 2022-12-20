@@ -12,7 +12,7 @@ public class DisciplinaEntidade implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private int id;
 
     @OneToOne
     private AulaEntidade aula;

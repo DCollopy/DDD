@@ -44,12 +44,12 @@ public class TurmaIml implements TurmaService {
     }
 
     @Override
-    public Turma findById(float id) {
+    public Turma findById(int id) {
         return turmaConverte.converteEntidadeToTurma(turmaRepositorio.findById(id).orElse(null));
     }
 
     @Override
-    public Boolean existsById(float id) {
+    public Boolean existsById(int id) {
         return turmaRepositorio.existsById(id);
     }
 

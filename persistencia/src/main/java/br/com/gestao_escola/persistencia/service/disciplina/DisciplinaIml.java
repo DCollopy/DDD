@@ -29,12 +29,12 @@ public class DisciplinaIml implements DisciplinaService {
     }
 
     @Override
-    public Disciplina findOne(float id) {
+    public Disciplina findOne(int id) {
         return disciplinaConverte.converteEntitidadeToDisciplina(disciplinaRepositorio.findById(id).get());
     }
 
     @Override
-    public Boolean exist(float id) {
+    public Boolean exist(int id) {
         return disciplinaRepositorio.existsById(id);
     }
 
@@ -55,7 +55,7 @@ public class DisciplinaIml implements DisciplinaService {
     }
 
     @Override
-    public void delete(float id) {
+    public void delete(int id) {
         Disciplina encontreDisciplina = findOne(id);
         disciplinaValidaAbs.deletaDisciplina(encontreDisciplina);
         disciplinaRepositorio.deleteById(id);

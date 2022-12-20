@@ -14,7 +14,7 @@ public class TurmaEntidade  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private int id;
 
     private String nome;
 

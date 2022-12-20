@@ -38,7 +38,7 @@ public class AulaIml implements AulaService {
     }
 
     @Override
-    public Aula findOne(float id) {
+    public Aula findOne(int id) {
         return aulaConverte.converteEntitidadeToAula(aulaRepository.findById(id).get());
     }
 
@@ -48,7 +48,7 @@ public class AulaIml implements AulaService {
     }
 
     @Override
-    public void delete(float id) {
+    public void delete(int id) {
         Aula aulaExiste = aulaConverte.converteEntitidadeToAula(aulaRepository.findById(id).get());
         if (aulaExiste != null) {
             aulaRepository.deleteById(id);

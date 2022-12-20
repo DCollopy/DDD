@@ -1,12 +1,14 @@
 package br.com.gestao_escola.web.controller;
 
+import br.com.gestao_escola.dominio.entidade.forum.OrganizaForum;
 import br.com.gestao_escola.dominio.entidade.servico.ForumService;
 import br.com.gestao_escola.dominio.entidade.servico.OrganizaForumService;
 import br.com.gestao_escola.web.converte.ForumMapper;
 import br.com.gestao_escola.web.converte.OrganizaForumMapper;
-import br.com.gestao_escola.web.model.ForumDTO;
 import br.com.gestao_escola.web.model.OrganizaForumDTO;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/escola/forum")
@@ -25,13 +27,13 @@ public class ForumController {
     }
 
     @GetMapping
-    public void index() {
-        organizaForumService.listAll();
+    public List<OrganizaForum> index() {
+        return organizaForumService.listAll();
     }
 
     @GetMapping({ "/{id}" })
-    public void index(@PathVariable Float id) {
-        organizaForumService.findOne(id);
+    public OrganizaForum index(@PathVariable int id) {
+        return organizaForumService.findOne(id);
     }
 
     @PostMapping("/criarForum")

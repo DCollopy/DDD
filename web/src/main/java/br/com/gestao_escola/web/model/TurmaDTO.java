@@ -16,7 +16,7 @@ public class TurmaDTO {
 
     private LocalDate data_fim;
 
-    private List<Aluno> aluno;
+    private List<AlunoDTO> aluno;
 
     private int quantidade_alunos;
 

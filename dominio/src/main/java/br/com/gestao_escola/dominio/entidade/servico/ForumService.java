@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ForumService {
     void save(Forum forum);
-    Forum findOne(float id);
-    Boolean exist(float id);
+    Forum findOne(int id);
+    Boolean exist(int id);
     List<Forum> listAll();
     Forum edit(Forum forum);
 }

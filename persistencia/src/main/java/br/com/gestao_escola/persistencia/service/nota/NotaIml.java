@@ -29,14 +29,14 @@ public class NotaIml implements NotaService {
         notaRepositorio.save(notaConverte.converteNotaToEntidade(nota));
     }
     @Override
-    public void mediaNota(String cpf, float id, String professor) {
+    public void mediaNota(String cpf, int id, String professor) {
         List<NotaEntidade> notaEntidade = notaRepositorio.findAll();
         List<Nota> nota = notaEntidade.stream().map(notaConverte::converteEntidadeToNota).collect(Collectors.toList());
         notaValidaAbs.mediaNota(nota, cpf, id, professor);
         notaRepositorio.save(notaConverte.converteNotaToEntidade(nota.get(0)));
     }
     @Override
-    public double buscaMedia(float id, String cpf) {
+    public double buscaMedia(int id, String cpf) {
         List<NotaEntidade> nota = notaRepositorio.findAll();
         return nota.stream()
                 .filter(notaEntidade -> notaEntidade.getAula().getId() == id && notaEntidade.getAluno().getCpf().getCpf().contains(cpf))

@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class NotaEntidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private float id;
+    private int id;
 
     private double nota;
 

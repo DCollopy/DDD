@@ -19,4 +19,8 @@ public class NotaMapper {
     public NotaDTO converteNotaToDTO(Nota nota) {
         return modelMapper.map(nota, NotaDTO.class);
     }
+
+    public br.com.gestao_escola.kafka.model.NotaDTO converteNotaToDTOProducer(NotaDTO notaDTO) {
+        return modelMapper.map(notaDTO, br.com.gestao_escola.kafka.model.NotaDTO.class);
+    }
 }

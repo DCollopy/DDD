@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
 @SpringBootApplication
 @ComponentScan(basePackages = "br.com.gestao_escola.*")
 @EntityScan(basePackages = "br.com.gestao_escola.*")
@@ -17,5 +16,4 @@ public class WebApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class, args);
     }
-
 }

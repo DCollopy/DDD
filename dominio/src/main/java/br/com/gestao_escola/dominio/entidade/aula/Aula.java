@@ -7,24 +7,15 @@ import java.time.LocalTime;
 @Data
 public class Aula {
 
-    private float id;
-
+    private int id;
     private String nome;
-
     private String descricao;
-
     private LocalDate data_inicio;
-
     private LocalDate data_fim;
-
     private LocalTime hora_inicio;
-
     private LocalTime hora_fim;
-
     private String dia_semana;
-
     private String dia_semana_2;
-
     private String dia_semana_3;
     private Boolean aulaAtiva;
 
@@ -43,4 +34,6 @@ public class Aula {
         this.dia_semana_3 = dia_semana_3;
         this.aulaAtiva = aulaAtiva;
     }
+
+    public Aula(){}
 }

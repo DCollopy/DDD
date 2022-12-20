@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class OrganizaForumEntidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     private String titulo;
 

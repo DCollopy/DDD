@@ -7,7 +7,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NotaDTO {
 
-    private float id;
+    private int id;
 
     private double nota;
 
@@ -16,4 +16,7 @@ public class NotaDTO {
     private AlunoDTO aluno;
 
     private double media;
+
+    public NotaDTO() {
+    }
 }
