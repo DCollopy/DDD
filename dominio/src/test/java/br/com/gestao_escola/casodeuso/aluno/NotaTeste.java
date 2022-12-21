@@ -15,12 +15,12 @@ import java.util.List;
 import static br.com.gestao_escola.dominio.entidade.objetos.DiaSemana.SEGUNDA;
 import static br.com.gestao_escola.dominio.entidade.objetos.DiaSemana.SEXTA;
 import static java.lang.Boolean.TRUE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class NotaTeste {
-
     protected NotaValidaTeste notaValidaTeste = new NotaValidaTeste();
-
     Responsavel responsavel = new Responsavel("Viviane", "Chaves"
             , new Telefone("22", "12345678")
             , new Endereco("x", "x", "x", "x", "x"
@@ -42,18 +42,20 @@ class NotaTeste {
 
     Nota nota = new Nota(10.0, aula, aluno);
 
-    List<Nota> notaList = List.of(nota
-            , new Nota(9.0, aula, aluno)
-            , new Nota(8.0, aula, aluno)
-            , new Nota(8.0, aula, aluno));
-
     @Test
     void criaNota() {
         assertNotNull(notaValidaTeste.criaNota(nota));
     }
 
     @Test
+    void lancandoNotas() {
+        nota.setNota_2(10.0);
+        nota.setNota_3(10.0);
+        assertNotNull( notaValidaTeste.lancandoNotas(nota));
+    }
+
+    @Test
     void mediaNota() {
-        assertNotNull(notaValidaTeste.mediaNota(notaList, aluno.getCpf().getCpf(), nota.getId(), "PROFESSOR"));
+        assertNotNull(notaValidaTeste.mediaNota(nota, "PROFESSOR"));
     }
 }

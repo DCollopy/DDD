@@ -9,13 +9,18 @@ import java.util.logging.Logger;
 public class Nota {
 
     private int id;
-    private double nota;
+    private double nota_1;
+
+    private double nota_2;
+
+    private double nota_3;
     private Aula aula;
     private Aluno aluno;
 
     private double media;
-    public Nota(double nota, Aula aula, Aluno aluno) {
-        if (nota < 0 || nota > 10) {
+
+    public Nota(double nota_1, Aula aula, Aluno aluno) {
+        if (nota_1 < 0 || nota_1 > 10) {
             Logger.getLogger("Nota").info("Nota invalido");
             throw new IllegalArgumentException("Nota invalida");
         }
@@ -27,7 +32,7 @@ public class Nota {
             Logger.getLogger("Nota").info("Aluno invalido");
             throw new IllegalArgumentException("Aluno invalido");
         }
-        this.nota = nota;
+        this.nota_1 = nota_1;
         this.aula = aula;
         this.aluno = aluno;
     }

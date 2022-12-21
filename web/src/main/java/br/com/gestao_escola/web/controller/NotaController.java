@@ -1,6 +1,7 @@
 package br.com.gestao_escola.web.controller;
 
 import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
+import br.com.gestao_escola.dominio.entidade.aluno.Nota;
 import br.com.gestao_escola.dominio.entidade.aula.Aula;
 import br.com.gestao_escola.dominio.entidade.servico.AlunoService;
 import br.com.gestao_escola.dominio.entidade.servico.AulaService;
@@ -38,25 +39,32 @@ public class NotaController {
     }
 
     @GetMapping("/calculoMedia/{id}/{professor}")
-    public void mediaNota(@PathVariable String cpf, @PathVariable int id, @PathVariable String professor) {
-        notaService.mediaNota(cpf, id, professor);
+    public void mediaNota(@PathVariable int id, @PathVariable String professor) {
+        notaService.mediaNota(id, professor);
     }
 
     @GetMapping("/mediaAluno/{id}/{cpf}")
     public ResponseEntity<Double> mediaAluno(@PathVariable int id, @PathVariable String cpf) {
-        return ResponseEntity.ok(notaService.buscaMedia(id,cpf));
+        return ResponseEntity.ok(notaService.buscaMedia(id, cpf));
     }
 
     @PostMapping("/criaNota/{cpf}/{id}")
     public ResponseEntity<NotaDTO> criaNota(@RequestBody NotaDTO nota, @PathVariable String cpf, @PathVariable int id) throws InterruptedException {
         Aluno aluno = alunoService.findOne(cpf);
         Aula aula = aulaService.findOne(id);
-        if(aula != null && aluno != null) {
+        if (aula != null && aluno != null) {
             nota.setAluno(alunoMapper.converteAlunoToDTO(aluno));
             nota.setAula(aulaMapper.converteAulaToDTO(aula));
             notaProducer.send(notaMapper.converteNotaToDTOProducer(nota));
             notaService.criaNota(notaMapper.converteDTOToNota(nota));
         }
+        return ResponseEntity.badRequest().build();
+    }
+
+    @PutMapping("/lancandoNotas/{cpf}/{id}")
+    public ResponseEntity<NotaDTO> lancandoNotas(@PathVariable int id) throws InterruptedException {
+        Nota nota = notaService.encontreNota(id);
+        notaService.lancandoNotas(nota);
         return ResponseEntity.badRequest().build();
     }
 }

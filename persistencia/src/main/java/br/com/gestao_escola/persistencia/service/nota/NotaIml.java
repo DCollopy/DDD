@@ -28,12 +28,21 @@ public class NotaIml implements NotaService {
         notaValidaAbs.criaNota(nota);
         notaRepositorio.save(notaConverte.converteNotaToEntidade(nota));
     }
+
     @Override
-    public void mediaNota(String cpf, int id, String professor) {
-        List<NotaEntidade> notaEntidade = notaRepositorio.findAll();
-        List<Nota> nota = notaEntidade.stream().map(notaConverte::converteEntidadeToNota).collect(Collectors.toList());
-        notaValidaAbs.mediaNota(nota, cpf, id, professor);
-        notaRepositorio.save(notaConverte.converteNotaToEntidade(nota.get(0)));
+    public void lancandoNotas(Nota nota) {
+        if(nota.getNota_2() == 0 && nota.getNota_3() == 0){
+            throw new IllegalArgumentException("Nota não lançada");
+        }
+        Nota nota_validado = notaValidaAbs.lancandoNotas(nota);
+        notaRepositorio.save(notaConverte.converteNotaToEntidade(nota_validado));
+    }
+
+    @Override
+    public void mediaNota(int id, String professor) {
+        Nota nota = encontreNota(id);
+        notaValidaAbs.mediaNota(nota, professor);
+        notaRepositorio.save(notaConverte.converteNotaToEntidade(nota));
     }
     @Override
     public double buscaMedia(int id, String cpf) {
@@ -42,5 +51,10 @@ public class NotaIml implements NotaService {
                 .filter(notaEntidade -> notaEntidade.getAula().getId() == id && notaEntidade.getAluno().getCpf().getCpf().contains(cpf))
                 .mapToDouble(NotaEntidade::getMedia)
                 .iterator().next();
+    }
+
+    @Override
+    public Nota encontreNota(int id) {
+        return notaConverte.converteEntidadeToNota(notaRepositorio.findById(id).orElseThrow(() -> new RuntimeException("Nota não encontrada")));
     }
 }

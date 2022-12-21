@@ -5,7 +5,11 @@ import lombok.Data;
 @Data
 public class NotaDTO {
 
-    private double nota;
+    private double nota_1;
+
+    private double nota_2;
+
+    private double nota_3;
 
     private AulaDTO aula;
 

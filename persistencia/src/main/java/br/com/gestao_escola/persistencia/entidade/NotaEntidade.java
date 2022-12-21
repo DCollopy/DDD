@@ -13,7 +13,11 @@ public class NotaEntidade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private double nota;
+    private double nota_1;
+
+    private double nota_2;
+
+    private double nota_3;
 
     @OneToOne
     private AulaEntidade aula;

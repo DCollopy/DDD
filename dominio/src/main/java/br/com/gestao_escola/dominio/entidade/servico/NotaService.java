@@ -7,8 +7,10 @@ import java.util.List;
 public interface NotaService {
 
     void criaNota(Nota nota);
-
-    void mediaNota(String cpf, int id, String professor);
+    void lancandoNotas(Nota nota);
+    void mediaNota(int id, String professor);
 
     double buscaMedia(int id,String cpf);
+
+    Nota encontreNota(int id);
 }

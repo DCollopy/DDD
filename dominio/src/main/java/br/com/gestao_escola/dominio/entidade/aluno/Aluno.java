@@ -16,8 +16,6 @@ public class Aluno extends Pessoa {
 
     private Set<Falta> falta;
     private Set<Turma> turma;
-
-    private Set<Nota> nota;
     private Responsavel responsavel;
 
     public Aluno(String nome, String sobrenome, Telefone telefone, Endereco endereco, Cpf cpf, Email email, Responsavel responsavel) {
