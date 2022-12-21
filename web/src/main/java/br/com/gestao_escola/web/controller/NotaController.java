@@ -10,7 +10,6 @@ import br.com.gestao_escola.web.converte.AlunoMapper;
 import br.com.gestao_escola.web.converte.AulaMapper;
 import br.com.gestao_escola.web.converte.NotaMapper;
 import br.com.gestao_escola.web.model.NotaDTO;
-import br.com.gestao_escola.kafka.produtor.NotaProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,17 +20,16 @@ import java.util.concurrent.TimeUnit;
 public class NotaController {
     private final NotaService notaService;
     private final NotaMapper notaMapper;
-    private final NotaProducer notaProducer;
+
     private final AlunoService alunoService;
     private final AlunoMapper alunoMapper;
     private final AulaService aulaService;
     private final AulaMapper aulaMapper;
 
-    public NotaController(NotaService notaService, NotaMapper notaMapper, NotaProducer notaProducer
-            , AlunoService alunoService, AlunoMapper alunoMapper, AulaService aulaService, AulaMapper aulaMapper) {
+    public NotaController(NotaService notaService, NotaMapper notaMapper, AlunoService alunoService
+            , AlunoMapper alunoMapper, AulaService aulaService, AulaMapper aulaMapper) {
         this.notaService = notaService;
         this.notaMapper = notaMapper;
-        this.notaProducer = notaProducer;
         this.alunoService = alunoService;
         this.alunoMapper = alunoMapper;
         this.aulaService = aulaService;
@@ -56,7 +54,6 @@ public class NotaController {
         Aula aula = aulaService.findOne(id);
         if (aula != null && aluno != null) {
             nota.setAluno(alunoMapper.converteAlunoToDTO(aluno));
-            notaProducer.send(notaMapper.converteNotaToDTOProducer(nota));
             notaService.criaNota(notaMapper.converteDTOToNota(nota));
             TimeUnit.SECONDS.sleep(1);
             nota.setAula(aulaMapper.converteAulaToDTO(aula));
@@ -79,7 +76,6 @@ public class NotaController {
             nota.setMedia(0);
         }
         notaService.lancandoNotas(nota);
-        notaProducer.send(notaMapper.converteNotaToDTOProducerEntitidade(nota));
         return ResponseEntity.ok(notaMapper.converteNotaToDTO(nota));
     }
 }
