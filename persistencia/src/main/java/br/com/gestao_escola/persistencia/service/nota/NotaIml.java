@@ -41,8 +41,8 @@ public class NotaIml implements NotaService {
     @Override
     public void mediaNota(int id, String professor) {
         Nota nota = encontreNota(id);
-        notaValidaAbs.mediaNota(nota, professor);
-        notaRepositorio.save(notaConverte.converteNotaToEntidade(nota));
+        Nota nota_validado = notaValidaAbs.mediaNota(nota, professor);
+        notaRepositorio.save(notaConverte.converteNotaToEntidade(nota_validado));
     }
     @Override
     public double buscaMedia(int id, String cpf) {
