@@ -7,7 +7,6 @@
         <module>dominio</module>
         <module>persistencia</module>
         <module>web</module>
-        <module>kafka</module>
     </modules>
     <groupId>com.br</groupId>
     <artifactId>gestao_presenca</artifactId>
