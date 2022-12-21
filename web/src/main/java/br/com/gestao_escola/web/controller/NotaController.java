@@ -43,28 +43,43 @@ public class NotaController {
         notaService.mediaNota(id, professor);
     }
 
-    @GetMapping("/mediaAluno/{id}/{cpf}")
-    public ResponseEntity<Double> mediaAluno(@PathVariable int id, @PathVariable String cpf) {
-        return ResponseEntity.ok(notaService.buscaMedia(id, cpf));
+    @GetMapping("/mediaAluno/{id}")
+    public ResponseEntity<Double> mediaAluno(@PathVariable int id) {
+        return ResponseEntity.ok(notaService.buscaMedia(id));
     }
 
     @PostMapping("/criaNota/{cpf}/{id}")
-    public ResponseEntity<NotaDTO> criaNota(@RequestBody NotaDTO nota, @PathVariable String cpf, @PathVariable int id) throws InterruptedException {
+    public ResponseEntity<NotaDTO> criaNota(@RequestBody NotaDTO nota
+            , @PathVariable String cpf
+            , @PathVariable int id) throws InterruptedException {
         Aluno aluno = alunoService.findOne(cpf);
         Aula aula = aulaService.findOne(id);
         if (aula != null && aluno != null) {
             nota.setAluno(alunoMapper.converteAlunoToDTO(aluno));
-            nota.setAula(aulaMapper.converteAulaToDTO(aula));
             notaProducer.send(notaMapper.converteNotaToDTOProducer(nota));
             notaService.criaNota(notaMapper.converteDTOToNota(nota));
+            TimeUnit.SECONDS.sleep(1);
+            nota.setAula(aulaMapper.converteAulaToDTO(aula));
+            notaService.criaNota(notaMapper.converteDTOToNota(nota));
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(nota);
     }
 
-    @PutMapping("/lancandoNotas/{cpf}/{id}")
-    public ResponseEntity<NotaDTO> lancandoNotas(@PathVariable int id) throws InterruptedException {
+    @PutMapping("/lancandoNotas/{id}")
+    public ResponseEntity<NotaDTO> lancandoNotas(@PathVariable int id
+            ,@RequestParam (value = "nota_2", required = false ) double nota_2
+            ,@RequestParam (value = "nota_3", required = false )  double nota_3) throws InterruptedException {
         Nota nota = notaService.encontreNota(id);
+        if(nota_2 != 0){
+            nota.setNota_2(nota_2);
+            nota.setMedia(0);
+        }
+        if(nota_3 != 0){
+            nota.setNota_3(nota_3);
+            nota.setMedia(0);
+        }
         notaService.lancandoNotas(nota);
-        return ResponseEntity.badRequest().build();
+        notaProducer.send(notaMapper.converteNotaToDTOProducerEntitidade(nota));
+        return ResponseEntity.ok(notaMapper.converteNotaToDTO(nota));
     }
 }

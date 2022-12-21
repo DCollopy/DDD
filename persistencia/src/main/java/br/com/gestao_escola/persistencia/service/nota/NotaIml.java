@@ -31,7 +31,7 @@ public class NotaIml implements NotaService {
 
     @Override
     public void lancandoNotas(Nota nota) {
-        if(nota.getNota_2() == 0 && nota.getNota_3() == 0){
+        if(nota.getNota_2() == 0 || nota.getNota_3() == 0){
             throw new IllegalArgumentException("Nota não lançada");
         }
         Nota nota_validado = notaValidaAbs.lancandoNotas(nota);
@@ -45,12 +45,9 @@ public class NotaIml implements NotaService {
         notaRepositorio.save(notaConverte.converteNotaToEntidade(nota_validado));
     }
     @Override
-    public double buscaMedia(int id, String cpf) {
-        List<NotaEntidade> nota = notaRepositorio.findAll();
-        return nota.stream()
-                .filter(notaEntidade -> notaEntidade.getAula().getId() == id && notaEntidade.getAluno().getCpf().getCpf().contains(cpf))
-                .mapToDouble(NotaEntidade::getMedia)
-                .iterator().next();
+    public double buscaMedia(int id) {
+        Nota nota = encontreNota(id);
+        return nota.getMedia();
     }
 
     @Override

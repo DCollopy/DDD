@@ -10,7 +10,7 @@ public interface NotaService {
     void lancandoNotas(Nota nota);
     void mediaNota(int id, String professor);
 
-    double buscaMedia(int id,String cpf);
+    double buscaMedia(int id);
 
     Nota encontreNota(int id);
 }
