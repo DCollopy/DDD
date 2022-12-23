@@ -34,7 +34,7 @@ public abstract class FaltaValida {
         return falta;
     }
 
-    public void editFalta(List<Falta> falta, String professor, String cpf, LocalDate acheData) {
+    public Falta editFalta(List<Falta> falta, String professor, String cpf, LocalDate acheData) {
         try {
             if (professor.equals("PROFESSOR") && falta.stream().anyMatch(c -> c.getAluno().getCpf().getCpf().contains(cpf))) {
 
@@ -46,11 +46,13 @@ public abstract class FaltaValida {
                     f.setJustificativa("Falta justificada");
                     Logger.getLogger("Falta").info("Falta editada com sucesso");
                 });
+                return falta.stream().iterator().next();
             }
         } catch (Exception e) {
             Logger.getLogger("Falta").info("Presenca nao calculada");
             throw new IllegalArgumentException("Ops, algo deu errado");
         }
+        return null;
     }
 
     public List<Falta> calculaFalta(List<Falta> falta, String professor, String cpf) {

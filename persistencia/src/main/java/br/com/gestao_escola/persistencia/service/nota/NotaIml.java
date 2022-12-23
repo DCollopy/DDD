@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
 @Service
 public class NotaIml implements NotaService {
     private final NotaConverte notaConverte;
-
     private final NotaRepositorio notaRepositorio;
-
     private NotaValidaAbs notaValidaAbs = new NotaValidaAbs();
 
     public NotaIml(NotaConverte notaConverte, NotaRepositorio notaRepositorio) {
@@ -52,6 +50,7 @@ public class NotaIml implements NotaService {
 
     @Override
     public Nota encontreNota(int id) {
-        return notaConverte.converteEntidadeToNota(notaRepositorio.findById(id).orElseThrow(() -> new RuntimeException("Nota não encontrada")));
+        return notaConverte.converteEntidadeToNota(notaRepositorio
+                .findById(id).orElseThrow(() -> new RuntimeException("Nota não encontrada")));
     }
 }

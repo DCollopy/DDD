@@ -1,9 +1,14 @@
 package br.com.gestao_escola.web.controller;
 
 import br.com.gestao_escola.dominio.entidade.aluno.Falta;
+import br.com.gestao_escola.dominio.entidade.servico.AlunoService;
+import br.com.gestao_escola.dominio.entidade.servico.AulaService;
 import br.com.gestao_escola.dominio.entidade.servico.FaltaService;
+import br.com.gestao_escola.web.converte.AlunoMapper;
+import br.com.gestao_escola.web.converte.AulaMapper;
 import br.com.gestao_escola.web.converte.FaltaMapper;
 import br.com.gestao_escola.web.model.FaltaDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,10 +18,19 @@ import java.util.List;
 public class FaltaController {
     private final FaltaService faltaService;
     private final FaltaMapper faltaMapper;
+    private final AulaService aulaService;
+    private final AlunoMapper alunoMapper;
+    private final AlunoService alunoService;
+    private final AulaMapper aulaMapper;
 
-    public FaltaController(FaltaService faltaService, FaltaMapper faltaMapper) {
+    public FaltaController(FaltaService faltaService, FaltaMapper faltaMapper, AulaService aulaService
+            , AlunoMapper alunoMapper, AlunoService alunoService, AulaMapper aulaMapper) {
         this.faltaService = faltaService;
         this.faltaMapper = faltaMapper;
+        this.aulaService = aulaService;
+        this.alunoMapper = alunoMapper;
+        this.alunoService = alunoService;
+        this.aulaMapper = aulaMapper;
     }
 
     @GetMapping
@@ -30,8 +44,10 @@ public class FaltaController {
     }
 
     @GetMapping({ "/aluno/reprovado" })
-    public boolean alunoReprovado(@RequestBody FaltaDTO falta) {
-        return faltaService.alunoReprovaFalta(faltaMapper.converteDTOToAluno(falta));
+    public boolean alunoReprovado(@PathVariable String cpf) {
+        alunoService.findOne(cpf);
+
+        return faltaService.alunoReprovaFalta(alunoService.findOne(cpf));
     }
 
     @GetMapping({ "/aluno/calculoFaltas/{professor}/{cpf}" })
@@ -39,21 +55,25 @@ public class FaltaController {
         return faltaService.calculaFalta(professor, cpf);
     }
 
-    @PostMapping("/criaFalta/{professor}")
-    public String criaFalta(@RequestBody FaltaDTO falta, @PathVariable String professor) {
+    @PostMapping("/criaFalta/{professor}/{cpf}/{id}")
+    public String criaFalta(@RequestBody FaltaDTO falta, @PathVariable String professor, @PathVariable String cpf, @PathVariable int id) {
+        falta.setAluno(alunoMapper.converteAlunoToDTO(alunoService.findOne(cpf)));
+        falta.setAula(aulaMapper.converteAulaToDTO(aulaService.findOne(id)));
         faltaService.criaFalta(faltaMapper.converteDTOToAluno(falta), professor);
         return "redirect:/falta";
     }
 
-    @PostMapping("/criaPresenca/{professor}")
-    public String criaPresenca(@RequestBody FaltaDTO falta, @PathVariable String professor) {
+    @PostMapping("/criaPresenca/{professor}/{cpf}/{id}")
+    public String criaPresenca(@RequestBody FaltaDTO falta, @PathVariable String professor, @PathVariable String cpf, @PathVariable int id) {
+        falta.setAluno(alunoMapper.converteAlunoToDTO(alunoService.findOne(cpf)));
+        falta.setAula(aulaMapper.converteAulaToDTO(aulaService.findOne(id)));
         faltaService.criaPresenca(faltaMapper.converteDTOToAluno(falta), professor);
         return "redirect:/falta";
     }
 
     @PutMapping("/edita/{professor}/{cpf}/{acheData}")
-    public String editFalta(@PathVariable String professor,@PathVariable String cpf,@PathVariable LocalDate acheData) {
+    public ResponseEntity<FaltaDTO> editFalta(@PathVariable String professor, @PathVariable String cpf, @PathVariable LocalDate acheData) {
         faltaService.editaFalta(professor, cpf, acheData);
-        return "redirect:/falta";
+        return ResponseEntity.ok().build();
     }
 }

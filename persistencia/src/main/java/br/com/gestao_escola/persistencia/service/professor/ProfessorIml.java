@@ -44,6 +44,14 @@ public class ProfessorIml implements ProfessorService {
     @Override
     public Professor edit(Professor professor) {
         Professor professorEdit = findOne(professor.getCpf().getCpf());
+
+        if(professor.getNome() != null) professorEdit.setNome(professor.getNome());
+        if(professor.getSobrenome() != null) professorEdit.setSobrenome(professor.getSobrenome());
+        if(professor.getTelefone() != null) professorEdit.setTelefone(professor.getTelefone());
+        if(professor.getDisciplina() != null) professorEdit.setDisciplina(professor.getDisciplina());
+        if(professor.getEmail() != null) professorEdit.setEmail(professor.getEmail());
+        if(professor.getEndereco() != null) professorEdit.setEndereco(professor.getEndereco());
+
         Professor professorParaEdicao = professorValidaAbs.editaProfessor(professorEdit);
         if (professorParaEdicao != null) {
             professorRepositorio.save(professorConverte.converteProfessorToEntidade(professorParaEdicao));

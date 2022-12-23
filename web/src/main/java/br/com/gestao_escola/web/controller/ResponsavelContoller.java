@@ -6,6 +6,7 @@ import br.com.gestao_escola.web.converte.CpfMapper;
 import br.com.gestao_escola.web.converte.ResponsavelMapper;
 import br.com.gestao_escola.web.model.CpfDTO;
 import br.com.gestao_escola.web.model.ResponsavelDTO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,8 +39,9 @@ public class ResponsavelContoller {
     }
 
     @PutMapping("/edita/{cpf}")
-    public String editResponsavel(@PathVariable String cpf) {
-        responsavelService.edit(responsavelService.findOne(cpf));
-        return "redirect:/responsavel";
+    public ResponseEntity<ResponsavelDTO> editResponsavel(@RequestBody ResponsavelDTO responsavelDTO) {
+        return ResponseEntity.ok(responsavelMapper
+                .converteResponsavelToDTO(responsavelService
+                        .edit(responsavelMapper.converteDTOToResponsavel(responsavelDTO))));
     }
 }

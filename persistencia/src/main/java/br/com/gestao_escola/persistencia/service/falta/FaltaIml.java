@@ -1,25 +1,28 @@
 package br.com.gestao_escola.persistencia.service.falta;
 
+import br.com.gestao_escola.dominio.entidade.aluno.Aluno;
 import br.com.gestao_escola.dominio.entidade.aluno.Falta;
 import br.com.gestao_escola.dominio.entidade.servico.FaltaService;
+import br.com.gestao_escola.persistencia.converte.AlunoConverte;
 import br.com.gestao_escola.persistencia.converte.FaltaConverte;
-import br.com.gestao_escola.persistencia.entidade.FaltaEntidade;
 import br.com.gestao_escola.persistencia.repositorio.FaltaRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
-
 @Service
 public class FaltaIml implements FaltaService {
     private final FaltaRepositorio faltaRepositorio;
     private final FaltaConverte faltaConverte;
+
+    private final AlunoConverte alunoConverter;
     private FaltaValidaAbs finalValidaAbs = new FaltaValidaAbs();
 
-    public FaltaIml(FaltaRepositorio faltaRepositorio, FaltaConverte faltaConverte) {
+    public FaltaIml(FaltaRepositorio faltaRepositorio, FaltaConverte faltaConverte, AlunoConverte alunoConverter) {
         this.faltaRepositorio = faltaRepositorio;
         this.faltaConverte = faltaConverte;
+        this.alunoConverter = alunoConverter;
     }
 
     @Override
@@ -40,10 +43,9 @@ public class FaltaIml implements FaltaService {
     }
 
     @Override
-    public boolean alunoReprovaFalta(Falta falta) {
-        FaltaEntidade faltaEntidade = faltaConverte.converteFaltaToEntidade(falta);
+    public boolean alunoReprovaFalta(Aluno aluno) {
         Falta faltaAluno = faltaConverte.converteEntitidadeToFalta(faltaRepositorio
-                .findFaltaEntidadeByAluno(faltaEntidade.getAluno().stream().iterator().next()));
+                .findFaltaEntidadeByAluno(alunoConverter.converteAlunoToEntidade(aluno)));
         return finalValidaAbs.alunoReprovaFalta(faltaAluno);
     }
 
@@ -56,7 +58,10 @@ public class FaltaIml implements FaltaService {
     @Override
     public void editaFalta(String professor, String cpf, LocalDate acheData) {
         List<Falta> faltaList = findAll();
-        finalValidaAbs.editFalta(faltaList, professor,cpf, acheData);
+        Falta falta = finalValidaAbs.editFalta(faltaList, professor, cpf, acheData);
+        if (falta != null) {
+            faltaRepositorio.save(faltaConverte.converteFaltaToEntidade(falta));
+        }
     }
 
     @Override

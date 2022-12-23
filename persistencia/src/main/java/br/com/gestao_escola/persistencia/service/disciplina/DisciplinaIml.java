@@ -49,6 +49,11 @@ public class DisciplinaIml implements DisciplinaService {
     @Override
     public Disciplina edit(Disciplina disciplina) {
         Disciplina encontreDisciplina = findOne(disciplina.getId());
+
+        if(disciplina.getAula() != null) encontreDisciplina.setAula(disciplina.getAula());
+        if(disciplina.getProfessor() != null) encontreDisciplina.setProfessor(disciplina.getProfessor());
+        if(disciplina.getTurma() != null) encontreDisciplina.setTurma(disciplina.getTurma());
+
         disciplinaValidaAbs.editaDisciplina(encontreDisciplina);
         disciplinaRepositorio.save(disciplinaConverte.converteDisciplinaToEntidade(disciplina));
         return encontreDisciplina;

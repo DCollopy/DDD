@@ -30,8 +30,11 @@ public class TurmaIml implements TurmaService {
     }
 
     @Override
-    public Turma edit(Turma turma, String identidade) {
-        Turma turmaValida = turmaValidaAbs.editaTurma(turma, identidade);
+    public Turma edit(int id ,String identidade, Turma turmaEditada) {
+        Turma turmaEncontre = findById(id);
+        if(turmaEncontre == null) throw new IllegalArgumentException("Turma não encontrada");
+        if(turmaEditada.getAluno() != null) turmaEncontre.setAluno(turmaEditada.getAluno());
+        Turma turmaValida = turmaValidaAbs.editaTurma(turmaEditada, identidade);
         if (turmaValida != null) {
             turmaRepositorio.save(turmaConverte.converteTurmaToEntidade(turmaValida));
         }

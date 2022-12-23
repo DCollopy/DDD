@@ -8,7 +8,7 @@ public interface TurmaService {
 
     void save(Turma turma, String identidade);
 
-    Turma edit(Turma turma, String identidade);
+    Turma edit(int id, String identidade, Turma turmaEditada);
 
     List<Turma> findAll();
 

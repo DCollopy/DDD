@@ -35,7 +35,8 @@ public class AlunoServiceIml implements AlunoService {
 
     @Override
     public Aluno findOne(String cpf) {
-        AlunoEntidade encontreUmAluno = alunoRepositorio.findOnesByCpf(cpfConvertes.converteCpfToEntidade(new Cpf(cpf)));
+        AlunoEntidade encontreUmAluno = alunoRepositorio
+                .findOnesByCpf(cpfConvertes.converteCpfToEntidade(new Cpf(cpf)));
         return alunoConverte.converteEntitidadeToAluno(encontreUmAluno);
     }
 
@@ -48,6 +49,9 @@ public class AlunoServiceIml implements AlunoService {
     public void edit(Aluno aluno) {
         Aluno alunoEditado = findOne(aluno.getCpf().getCpf());
         if (alunoEditado != null) {
+            if(aluno.getNome() != null) alunoEditado.setNome(aluno.getNome());
+            if(aluno.getSobrenome() != null) alunoEditado.setSobrenome(aluno.getSobrenome());
+            if(aluno.getResponsavel() != null) alunoEditado.setResponsavel(aluno.getResponsavel());
             Aluno editAluno = alunoValidaAbs.editAluno(alunoEditado);
             alunoRepositorio.save(alunoConverte.converteAlunoToEntidade(editAluno));
             Logger.getLogger("Aluno").info("Aluno editado com sucesso" + editAluno.getNome());

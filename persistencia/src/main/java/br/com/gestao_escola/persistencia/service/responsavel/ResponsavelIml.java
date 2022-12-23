@@ -34,11 +34,15 @@ public class ResponsavelIml implements ResponsavelService {
 
     @Override
     public Responsavel edit(Responsavel responsavel) {
+        Responsavel responsavelEncontrado = findOne(responsavel.getCpf().getCpf());
+        if(responsavel.getNome() != null) responsavelEncontrado.setNome(responsavel.getNome());
+        if(responsavel.getSobrenome() != null) responsavelEncontrado.setSobrenome(responsavel.getSobrenome());
+        if(responsavel.getTelefone() != null) responsavelEncontrado.setTelefone(responsavel.getTelefone());
+        if(responsavel.getEndereco() != null) responsavelEncontrado.setEndereco(responsavel.getEndereco());
+        if(responsavel.getEmail() != null) responsavelEncontrado.setEmail(responsavel.getEmail());
         responsavelAbs.editaResponsavel(responsavel);
-        return responsavelConverte
-                .converteEntidadeToResponsavel(responsavelRepositorio
-                        .save(responsavelConverte
-                                .converteResponsavelToEntidade(responsavel)));
+        responsavelRepositorio.save(responsavelConverte.converteResponsavelToEntidade(responsavelEncontrado));
+        return responsavelEncontrado;
     }
 
     @Override

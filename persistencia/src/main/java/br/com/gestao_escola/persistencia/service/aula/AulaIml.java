@@ -31,6 +31,12 @@ public class AulaIml implements AulaService {
     @Override
     public void edit(Aula aula) {
         Aula aulaEdit = findOne(aula.getId());
+
+        if( aula.getNome() != null) aulaEdit.setNome(aula.getNome());
+        if(aula.getDia_semana() != null) aulaEdit.setDia_semana(aula.getDia_semana());
+        if(aula.getHora_inicio() != null) aulaEdit.setHora_inicio(aula.getHora_inicio());
+        if(aula.getHora_fim() != null) aulaEdit.setHora_fim(aula.getHora_fim());
+
         Aula aulaParaEdicao = aulaValidaAbs.editaAula(aulaEdit);
         if (aulaParaEdicao != null) {
             aulaRepository.save(aulaConverte.converteAulaToEntidade(aulaParaEdicao));
@@ -39,7 +45,7 @@ public class AulaIml implements AulaService {
 
     @Override
     public Aula findOne(int id) {
-        return aulaConverte.converteEntitidadeToAula(aulaRepository.findById(id).get());
+        return aulaConverte.converteEntitidadeToAula(aulaRepository.findById(id).orElse(null));
     }
 
     @Override

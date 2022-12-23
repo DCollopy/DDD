@@ -19,7 +19,7 @@ public class NotaEntidade implements Serializable {
 
     private double nota_3;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
     private AulaEntidade aula;
 
     @OneToOne
