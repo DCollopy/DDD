@@ -1,5 +1,6 @@
-package br.com.gestao_escola.dominio.casodeuso.admin;
+package br.com.gestao_escola.casodeuso.admin;
 
+import br.com.gestao_escola.dominio.casodeuso.admin.AdminValidaTeste;
 import br.com.gestao_escola.dominio.entidade.admin.Admin;
 import br.com.gestao_escola.dominio.entidade.objetos.Cpf;
 import org.junit.jupiter.api.Test;
